@@ -1,35 +1,40 @@
 {
   "kind": "build_request",
-  "title": "Replace header logo image with previously shared Linex Automation logo",
-  "priority": "high",
+  "title": "Add typing/backspace word animation to Home hero headline span",
+  "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-14",
-      "text": "Update the header logo <img> element (XPath: /html/body/div/div/header/div/a/img) so it always renders the user-provided Linex Automation logo (served from `/assets/generated/linex-logo-user.dim_512x512.png`) and does not display the old generated logo (`/assets/generated/linex-logo.dim_512x512.png`).",
+      "id": "REQ-44",
+      "text": "Update ONLY the selected Home page hero headline span element (XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/h1[1]/span[1]`, implemented in `frontend/src/pages/HomePage.tsx`) to animate its text with a typing effect that cycles through the words `Planning` → `Precision` → `Performance`, deleting each complete word with a backspace effect before typing the next, and repeating this loop continuously. Do not change the span’s existing font, size, Tailwind classes, or color styling.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-1"
         ],
         "quotes": [
-          "i want you remove this logo and add my linex automation logo i shared with you before"
+          "i want to animate this part as Typing Planning then delete the complete word using backspace then type Precision then again delete the word and finally type Performance and then repeat it again from start",
+          "yes and dont change font or color",
+          "ok do it",
+          "/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/h1[1]/span[1]"
         ]
       },
       "acceptanceCriteria": [
-        "In `frontend/src/components/layout/SiteHeader.tsx`, the header logo `<img>` uses `src={BRANDING.logo.main}` and `alt={BRANDING.logo.alt}` (no hardcoded old logo path).",
-        "`frontend/src/config/branding.ts` sets `BRANDING.logo.main` to `/assets/generated/linex-logo-user.dim_512x512.png` and `BRANDING.logo.alt` remains English.",
-        "The static asset `frontend/public/assets/generated/linex-logo-user.dim_512x512.png` exists in the deployed frontend build output and loads successfully (HTTP 200) when requested directly.",
-        "After deployment, the header logo displayed in the UI is the user-provided Linex Automation logo, not `linex-logo.dim_512x512.png`."
+        "On the Home page, the selected `<span>` in the hero `<h1>` displays a typing animation for the word \"Planning\", then deletes the full word via a backspace effect, then types \"Precision\", deletes it, then types \"Performance\", deletes it, and repeats from \"Planning\" indefinitely.",
+        "Only the selected span’s text content/behavior is changed; its existing Tailwind class(es) (including its color class) remain unchanged and the visual font/color do not change.",
+        "The animation runs smoothly on both desktop and mobile and does not cause layout breakage or clipping in the hero headline."
       ]
     }
   ],
   "constraints": [
-    "Apply changes ONLY to the selected element in the header (the logo <img> at XPath /html/body/div/div/header/div/a/img).",
-    "Use English for any user-facing text."
+    "Apply changes ONLY to the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/h1[1]/span[1]` in `frontend/src/pages/HomePage.tsx`.",
+    "Keep all user-facing text in English.",
+    "Do not change the selected span’s existing font or color (do not alter its Tailwind classes or introduce styling changes).",
+    "Do not edit any files under `frontend/src/components/ui` or other `frontend.immutablePaths`."
   ],
   "nonGoals": [
-    "Do not change footer branding/logo placement or any other UI elements beyond the selected header logo <img>.",
-    "Do not introduce new authentication, backend changes, or new pages."
+    "Adding email-sending for contact form enquiries (not supported in this build request).",
+    "Changing any other Home page hero copy besides the selected span.",
+    "Redesigning the hero section layout or changing typography/color scheme."
   ],
   "imageRequirements": {
     "required": [],

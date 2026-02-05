@@ -1,4 +1,4 @@
-import { Cpu, Monitor, Network, Zap, Gauge, Box, Battery } from 'lucide-react';
+import { Cpu, Monitor, Network, Zap, Gauge, Box, Settings } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export interface Service {
@@ -103,7 +103,7 @@ export const services: Service[] = [
       'Printing and converting',
     ],
     category: 'drives',
-    icon: Zap,
+    icon: Settings,
   },
   {
     id: 'vfd',
@@ -172,6 +172,6 @@ export const services: Service[] = [
       'Energy efficiency initiatives',
     ],
     category: 'energy',
-    icon: Battery,
+    icon: Zap,
   },
 ];

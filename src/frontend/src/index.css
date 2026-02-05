@@ -119,3 +119,92 @@
         border-color: oklch(var(--industrial-accent));
     }
 }
+
+/* Hero Slideshow Styles */
+@layer components {
+    .hero-slideshow-container {
+        @apply relative h-full w-full flex flex-col;
+    }
+
+    .hero-slideshow-viewport {
+        @apply relative flex-1 w-full overflow-hidden cursor-grab active:cursor-grabbing;
+    }
+
+    .hero-slideshow-track {
+        @apply flex h-full;
+        will-change: transform;
+    }
+
+    .hero-slideshow-slide {
+        @apply h-full flex-shrink-0 w-full;
+    }
+
+    /* Bottom Navigation Dots - Below slideshow, not overlaying */
+    .hero-slideshow-nav {
+        @apply flex items-center justify-center gap-6 py-6;
+        /* No absolute positioning - normal flow below viewport */
+    }
+
+    .hero-slideshow-dot {
+        @apply relative p-0 border-0 bg-transparent cursor-pointer;
+        @apply transition-all duration-200 ease-out;
+        @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+        width: 8px;
+        height: 8px;
+        /* Larger invisible hit area for better touch/click targets */
+        padding: 8px;
+        margin: -8px;
+    }
+
+    .hero-slideshow-dot:focus-visible {
+        ring-color: oklch(0.50 0 0 / 0.5);
+    }
+
+    .hero-slideshow-dot-inner {
+        @apply block rounded-full;
+        @apply transition-all duration-200 ease-out;
+        width: 8px;
+        height: 8px;
+        /* Light gray inactive dot */
+        background-color: oklch(0.75 0 0 / 0.4);
+    }
+
+    .hero-slideshow-dot:hover .hero-slideshow-dot-inner {
+        background-color: oklch(0.60 0 0 / 0.6);
+    }
+
+    /* Active dot - darker/filled */
+    .hero-slideshow-dot.active .hero-slideshow-dot-inner {
+        background-color: oklch(0.40 0 0 / 0.85);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+        .hero-slideshow-nav {
+            @apply gap-5 py-5;
+        }
+
+        .hero-slideshow-dot {
+            width: 7px;
+            height: 7px;
+            padding: 7px;
+            margin: -7px;
+        }
+
+        .hero-slideshow-dot-inner {
+            width: 7px;
+            height: 7px;
+        }
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+        .hero-slideshow-track {
+            transition: transform 0.3s ease-in-out !important;
+        }
+
+        .hero-slideshow-dot-inner {
+            transition: background-color 0.15s ease-out;
+        }
+    }
+}

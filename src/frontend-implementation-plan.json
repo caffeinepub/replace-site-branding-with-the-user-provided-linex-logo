@@ -1,32 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace SiteHeader logo with user-provided Linex Automation logo",
+  "title": "Typing/backspace rotating word animation for Home hero headline span",
   "requirements": [
     {
-      "id": "REQ-14",
-      "summary": "Ensure the header logo <img> always renders the user-provided Linex Automation logo via centralized branding config and that the static asset is present.",
+      "id": "REQ-44",
+      "summary": "Implement a looping typing + backspace animation for the existing Home hero headline <h1> span, cycling Planning → Precision → Performance continuously without changing styling.",
       "acceptanceCriteria": [
-        "In `frontend/src/components/layout/SiteHeader.tsx`, the header logo `<img>` uses `src={BRANDING.logo.main}` and `alt={BRANDING.logo.alt}` (no hardcoded old logo path).",
-        "`frontend/src/config/branding.ts` sets `BRANDING.logo.main` to `/assets/generated/linex-logo-user.dim_512x512.png` and `BRANDING.logo.alt` remains English.",
-        "The static asset `frontend/public/assets/generated/linex-logo-user.dim_512x512.png` exists in the deployed frontend build output and loads successfully (HTTP 200) when requested directly.",
-        "After deployment, the header logo displayed in the UI is the user-provided Linex Automation logo, not `linex-logo.dim_512x512.png`."
+        "On the Home page, the selected `<span>` in the hero `<h1>` displays a typing animation for the word \"Planning\", then deletes the full word via a backspace effect, then types \"Precision\", deletes it, then types \"Performance\", deletes it, and repeats from \"Planning\" indefinitely.",
+        "Only the selected span’s text content/behavior is changed; its existing Tailwind class(es) (including its color class) remain unchanged and the visual font/color do not change.",
+        "The animation runs smoothly on both desktop and mobile and does not cause layout breakage or clipping in the hero headline."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/config/branding.ts",
+          "path": "frontend/src/pages/HomePage.tsx",
           "operation": "modify",
-          "description": "Confirm `BRANDING.logo.main` points to `/assets/generated/linex-logo-user.dim_512x512.png` and keep `BRANDING.logo.alt` in English; ensure no reference to the old generated logo path remains here."
-        },
-        {
-          "path": "frontend/src/components/layout/SiteHeader.tsx",
-          "operation": "modify",
-          "description": "Ensure the specific header logo `<img>` at the selected location uses `src={BRANDING.logo.main}` and `alt={BRANDING.logo.alt}` only (no hardcoded logo path, and no reference to `/assets/generated/linex-logo.dim_512x512.png`)."
-        },
-        {
-          "path": "frontend/public/assets/generated/linex-logo-user.dim_512x512.png",
-          "operation": "modify",
-          "description": "Add/replace the static asset so the deployed build includes `frontend/public/assets/generated/linex-logo-user.dim_512x512.png` and it loads successfully when requested directly."
+          "description": "Update only the hero headline span currently rendering \"Excellence\" to instead render a state-driven animated string. Implement in-file typing/backspace logic (e.g., React state + effect with timed updates) that cycles through [\"Planning\",\"Precision\",\"Performance\"], types each word character-by-character, deletes the full word character-by-character, and loops indefinitely. Keep the span’s existing Tailwind classes unchanged and avoid any styling changes elsewhere in the page."
         }
       ]
     }

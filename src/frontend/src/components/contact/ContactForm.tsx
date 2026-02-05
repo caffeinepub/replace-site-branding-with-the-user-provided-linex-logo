@@ -81,7 +81,7 @@ export default function ContactForm() {
               message: 'Please enter a valid email or phone number',
             },
           })}
-          placeholder="your.email@example.com or +1 (555) 123-4567"
+          placeholder="Your Email address or Mobile number"
           className={errors.emailOrPhone ? 'border-destructive' : ''}
         />
         {errors.emailOrPhone && (

@@ -19,12 +19,12 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 items-center justify-between">
+      <div className="container flex h-28 items-center justify-between">
         <Link to="/" className="flex items-center space-x-3">
           <img
-            src={BRANDING.logo.main}
+            src="/assets/LINEX-removebg-preview.png"
             alt={BRANDING.logo.alt}
-            className="h-12 w-auto"
+            className="h-24 w-auto"
           />
           <span className="hidden text-lg font-bold uppercase tracking-tight sm:inline-block">
             {BRANDING.company.name}
@@ -56,7 +56,7 @@ export default function SiteHeader() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[280px] sm:w-[320px]">
-            <nav className="flex flex-col gap-4 mt-8">
+            <nav className="flex flex-col gap-4 mt-16">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}

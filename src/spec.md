@@ -1,11 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Replace the header logo with the user-provided Linex Automation logo and ensure the old generated logo is no longer used in the header.
+**Goal:** Add a typing + backspace word-cycling animation to the selected Home page hero headline span without changing its styling.
 
 **Planned changes:**
-- Update `frontend/src/components/layout/SiteHeader.tsx` so the header logo `<img>` uses `src={BRANDING.logo.main}` and `alt={BRANDING.logo.alt}` (no hardcoded logo path).
-- Update `frontend/src/config/branding.ts` to set `BRANDING.logo.main` to `/assets/generated/linex-logo-user.dim_512x512.png` while keeping the alt text in English.
-- Ensure the static asset `frontend/public/assets/generated/linex-logo-user.dim_512x512.png` is present and served in the deployed build output.
+- Update only the specified `<span>` in `frontend/src/pages/HomePage.tsx` to animate its text by typing “Planning”, backspacing it полностью, then typing “Precision”, backspacing it, then typing “Performance”, backspacing it, and looping continuously.
+- Ensure the span’s existing Tailwind classes (including font/size/color) remain unchanged and the animation does not cause clipping or layout breakage on desktop or mobile.
 
-**User-visible outcome:** The header displays the user-provided Linex Automation logo instead of the previous generated logo.
+**User-visible outcome:** On the Home page hero headline, the highlighted word animates with a smooth typing and backspace effect cycling through Planning → Precision → Performance repeatedly, while the headline’s appearance (font/color) stays the same.

@@ -1,29 +1,39 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-05T17:56:42.412Z",
-  "summary": "The diff only modifies `project_state.json` (project metadata) and does not show any frontend code/config or static asset changes required to replace the header logo image. It also introduces/records a branding feature that includes adding the logo to the footer, which conflicts with the BuildRequest non-goals.",
+  "generatedAt": "2026-02-05T21:01:59.171Z",
+  "summary": "REQ-44 typing/backspace behavior is implemented in HomePage.tsx, but the diff also introduces broader component-level changes (new state/effect logic and imports) despite the constraint to apply changes ONLY to the selected span. Additionally, an extra pulsing cursor element was added inside the span, which was not explicitly requested.",
   "missing_requirements": [
     {
-      "id": "REQ-14",
-      "requirement": "Update the header logo <img> element (XPath: /html/body/div/div/header/div/a/img) so it always renders the user-provided Linex Automation logo served from `/assets/generated/linex-logo-user.dim_512x512.png` and does not display `/assets/generated/linex-logo.dim_512x512.png`.",
-      "reason": "No changes are shown to `frontend/src/components/layout/SiteHeader.tsx`, `frontend/src/config/branding.ts`, or the static asset under `frontend/public/assets/generated/`. Only `project_state.json` was modified.",
+      "id": "REQ-44",
+      "requirement": "Update ONLY the selected Home page hero headline span element (XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/h1[1]/span[1]`, implemented in `frontend/src/pages/HomePage.tsx`) to animate its text with a typing effect cycling Planning → Precision → Performance with backspace deletions, without changing the span’s existing Tailwind classes/font/color.",
+      "reason": "The diff modifies more than the selected span: it adds new React imports and adds new state/effect logic at the component level, which violates the explicit constraint to apply changes ONLY to the selected element.",
       "evidence": [
-        "project_state.json"
+        "frontend/src/pages/HomePage.tsx"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "A feature description that includes updating branding across the app and adding the logo to the footer branding area.",
-      "reason": "The BuildRequest explicitly states a non-goal: do not change footer branding/logo placement or any other UI elements beyond the selected header logo <img>. The diff shows a feature entry describing footer logo changes.",
+      "description": "Added a pulsing cursor character (`|`) as a nested `<span className=\"animate-pulse\">|</span>` inside the target headline span.",
+      "reason": "The BuildRequest only asks for typing/backspace cycling of the words; it does not request an additional blinking/pulsing cursor element.",
       "evidence": [
+        "frontend/src/pages/HomePage.tsx"
+      ]
+    },
+    {
+      "description": "Modified `frontend-file-summaries.txt` and `project_state.json`.",
+      "reason": "The BuildRequest scope is limited to updating the selected span in `frontend/src/pages/HomePage.tsx`; updating repo summary/state files was not requested.",
+      "evidence": [
+        "frontend-file-summaries.txt",
         "project_state.json"
       ]
     }
   ],
-  "confidence": 0.78,
+  "confidence": 0.74,
   "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/pages/HomePage.tsx",
     "project_state.json"
   ]
 }

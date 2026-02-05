@@ -7,14 +7,7 @@ export default function SiteFooter() {
       <div className="container py-8">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <div className="mb-4 flex items-center space-x-3">
-              <img
-                src={BRANDING.logo.main}
-                alt={BRANDING.logo.alt}
-                className="h-12 w-auto"
-              />
-            </div>
-            <h3 className="mb-3 text-sm font-bold uppercase">{BRANDING.company.name}</h3>
+            <h3 className="mb-3 text-sm font-extrabold uppercase">{BRANDING.company.name}</h3>
             <p className="text-sm text-muted-foreground">
               {BRANDING.company.tagline}
             </p>

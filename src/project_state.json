@@ -1,18 +1,31 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 17,
+  "projectStateVersion": 49,
   "summary": "Initial full-stack Internet Computer (Motoko + React) app scaffolded with authorization utilities, Internet Identity authentication hooks, multi-page marketing site (Home/Solutions/About/Contact), services browsing UI, contact form, and build/deploy templates; includes generated brand/hero image assets.",
   "architectural_notes": [
     "Frontend uses React + Vite with Tailwind styling and a shared SiteLayout (header/footer).",
     "Authentication flow relies on Internet Identity; frontend constructs authenticated canister actors via hooks.",
     "Backend is a Motoko canister with reusable authorization/access-control modules.",
-    "Build/deploy scaffolding includes dockerized and ICP CLI-oriented templates plus image resize/prune scripts."
+    "Build/deploy scaffolding includes dockerized and ICP CLI-oriented templates plus image resize/prune scripts.",
+    "Services icon mapping decision: Element 1 = Servo (use new gear icon); Element 2 = Energy Management (use lightning symbol).",
+    "Home page hero media should be implemented as a high-quality, creative slideshow (not an auto-marquee): infinite seamless loop, autoplay, supports manual swipe/drag and clickable bottom navigation (creative rounded bars/dots), cycling through the original hero image plus additional industrial/PLC/Schneider EMS/Siemens automation/servos/VFD images.",
+    "Hero slideshow navigation: small round white dots, interactive (click/tap) and compatible with infinite looping; one dot per slide.",
+    "Hero slideshow content: one unique high-quality real-world photo per slide; do not duplicate images across slides.",
+    "Hero slideshow change request: remove the 5th slide (image '2' position in reordered sequence 3,7,5,6,2,1,4) entirely and append a new final slide using the newly uploaded image (image-14.png), increasing slide count by one."
   ],
   "known_issues": [
     "Reported issue: user-provided logo/branding was not updated or reflected in the deployed site.",
-    "Deployed site is still showing the wrong logo; user requests removing the current logo and using the previously shared Linex Automation logo instead."
+    "Deployed site is still showing the wrong logo; user requests removing the current logo and using the previously shared Linex Automation logo instead.",
+    "Home hero slideshow is still using the wrong/old photos; user requests replacing them with the photos they shared earlier.",
+    "Home hero slideshow navigation dots are too bright and too close together (crowded); needs softer color and increased spacing.",
+    "Deployment used an incorrect/random \"Ironman\" image in the Home hero slideshow instead of the user-attached engineering-layout photo; must replace the same slide as before (the slide corresponding to image '2' / 5th position in reordered sequence 3,7,5,6,2,1,4) with the newly attached image, keeping slide count unchanged.",
+    "User reports the incorrect deployment consumed 2 credits.",
+    "Deployed Home hero slideshow slide is still using a random/incorrect laptop photo (darker background with a face reflection) instead of the user-uploaded laptop-with-schematics image (referred to as image-12.png); needs replacement in the intended slide position.",
+    "Mobile menu issue: the close (X) button overlaps the Home button; shift the four menu buttons (Home/About/Solutions/Contact) slightly downward without moving the X button.",
+    "User requests changing hero slideshow structure: delete the previously replaced 5th slide (in reordered sequence 3,7,5,6,2,1,4) and add the new uploaded image (image-14.png) as the last slide; then rebuild/deploy.",
+    "Project storage limit exceeded when user attempts to upload the original photo asset for the hero slideshow (blocks using the exact user-provided last-slide image)."
   ],
-  "isFixRequest": true,
+  "isFixRequest": false,
   "generatedImages": [
     {
       "filename": "frontend/public/assets/generated/hero-automation.dim_1600x700.png",
@@ -214,6 +227,214 @@
         "REQ-13"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-only-the-selected-header-logo-img-element-xpath-html-body-div-div-header-div-a-img-implemented-in-frontend-src-components-layout-siteheader-tsx-so-its-src-uses-the-uploaded-linex-removebg-preview-png-asset-instead-of-the-old-logo-and-ensure-the-alt-text-remains-english",
+      "title": "Update only the selected header logo `<img>` element (XPath `/html/body/div/div/header/div/a/img`, implemented in `frontend/src/components/layout/SiteHeader.tsx`) so its `src` uses the uploaded `LINEX-removebg-preview.png` asset instead of the old logo, and ensure the `alt` text remains English.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-double-the-displayed-logo-size-in-the-global-site-header-by-updating-only-the-header-logo-img-element-in-frontend-src-components-layout-siteheader-tsx-xpath-html-body-div-div-header-div-a-img-ensure-the-larger-logo-is-not-clipped-on-desktop-or-mobile-and-keep-the-existing-english-alt-text",
+      "title": "Double the displayed logo size in the global site header by updating only the header logo <img> element in `frontend/src/components/layout/SiteHeader.tsx` (XPath `/html/body/div/div/header/div/a/img`). Ensure the larger logo is not clipped on desktop or mobile and keep the existing English `alt` text.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-solutions-services-ui-icons-only-for-the-two-user-selected-icon-elements-set-the-servo-systems-icon-element-1-xpath-html-body-div-div-main-div-section-2-div-div-2-div-4-div-div-div-svg-to-a-gear-icon-and-set-the-energy-management-icon-element-2-xpath-html-body-div-div-main-div-section-2-div-div-2-div-7-div-div-div-svg-rect-1-to-a-lightning-symbol-apply-these-icon-changes-through-the-service-icon-mapping-so-they-render-consistently-anywhere-the-services-are-displayed",
+      "title": "Update the Solutions/Services UI icons only for the two user-selected icon elements: set the Servo Systems icon (Element 1 XPath `/html/body/div/div/main/div/section[2]/div/div[2]/div[4]/div/div/div/svg`) to a gear icon, and set the Energy Management icon (Element 2 XPath `/html/body/div/div/main/div/section[2]/div/div[2]/div[7]/div/div/div/svg/rect[1]`) to a lightning symbol. Apply these icon changes through the service icon mapping so they render consistently anywhere the services are displayed.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-frontend-src-components-layout-sitefooter-tsx-remove-the-footer-logo-img-element-corresponding-to-xpath-html-body-div-div-footer-div-div-div-div-div-img-so-no-logo-image-is-rendered-in-that-footer-branding-area",
+      "title": "In `frontend/src/components/layout/SiteFooter.tsx`, remove the footer logo `<img>` element corresponding to XPath `/html/body/div/div/footer/div/div/div/div/div/img` so no logo image is rendered in that footer branding area.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-frontend-src-components-layout-sitefooter-tsx-update-only-the-footer-company-name-heading-h3-corresponding-to-xpath-html-body-div-div-footer-div-div-div-div-h3-to-use-a-heavier-weight-of-the-current-font-e-g-increase-tailwind-font-weight-from-font-bold-to-a-heavier-option-while-keeping-all-user-facing-text-in-english",
+      "title": "In `frontend/src/components/layout/SiteFooter.tsx`, update only the footer company name heading `<h3>` corresponding to XPath `/html/body/div/div/footer/div/div/div/div/h3` to use a heavier weight of the current font (e.g., increase Tailwind font weight from `font-bold` to a heavier option) while keeping all user-facing text in English.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-selected-paragraph-element-xpath-html-body-div-div-main-div-section-1-div-2-div-div-div-p-on-the-home-page-hero-section-so-its-text-content-is-exactly-comprehensive-solutions-for-modern-industrial-operations",
+      "title": "Update only the selected paragraph element (XPath `/html/body/div/div/main/div/section[1]/div[2]/div/div/div/p`) on the Home page hero section so its text content is exactly: “Comprehensive solutions for modern industrial operations.”",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-selected-home-page-hero-image-element-xpath-html-body-div-div-main-div-section-1-div-2-div-div-2-div-img-in-frontend-src-pages-homepage-tsx-by-replacing-the-current-single-img-with-an-automatically-sideways-scrolling-photo-gallery-carousel-that-continuously-scrolls-through-multiple-photos-related-to-industry-automation-siemens-plcs-plc-control-panels-pcs7-scada-schneider-pme-ems-software-siemens-servo-drives-and-vfds-keep-any-user-facing-text-including-image-alt-text-in-english",
+      "title": "Update ONLY the selected Home page hero image element (XPath `/html/body/div/div/main/div/section[1]/div[2]/div/div[2]/div/img`) in `frontend/src/pages/HomePage.tsx` by replacing the current single `<img>` with an automatically sideways-scrolling photo gallery/carousel that continuously scrolls through multiple photos related to: Industry Automation, Siemens PLCs, PLC Control Panels, PCS7 SCADA, Schneider PME/EMS software, Siemens Servo Drives, and VFDs. Keep any user-facing text (including image `alt` text) in English.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-required-carousel-photos-as-static-files-under-frontend-public-assets-generated-and-update-the-home-page-hero-carousel-to-reference-these-exact-filenames",
+      "title": "Add the required carousel photos as static files under `frontend/public/assets/generated/` and update the Home page hero carousel to reference these exact filenames.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-home-page-hero-media-behavior-for-the-selected-element-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-1-div-2-div-1-div-2-div-1-div-1-div-1-div-1-img-1-rendered-by-frontend-src-components-home-herocarousel-tsx-so-it-becomes-a-high-quality-slideshow-not-a-continuously-scrolling-strip-that-cycles-through-slides-representing-industries-plc-control-panels-schneider-energy-management-system-siemens-automation-servos-and-vfds-and-also-includes-the-previously-used-hero-image",
+      "title": "Replace the current Home page hero media behavior for the selected element (XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/img[1]`, rendered by `frontend/src/components/home/HeroCarousel.tsx`) so it becomes a high-quality slideshow (not a continuously scrolling strip) that cycles through slides representing: Industries, PLC Control Panels, Schneider Energy Management System, Siemens Automation, Servos, and VFDs, and also includes the previously used hero image.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-autoplay-plus-manual-interaction-for-the-home-hero-slideshow-it-must-autoplay-loop-seamlessly-infinite-and-allow-the-user-to-change-slides-via-swiping-dragging-and-via-clicking-the-bottom-navigation-control",
+      "title": "Implement autoplay plus manual interaction for the Home hero slideshow: it must autoplay, loop seamlessly/infinite, and allow the user to change slides via swiping/dragging and via clicking the bottom navigation control.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-creative-bottom-slide-navigation-ui-for-the-home-hero-slideshow-using-rounded-bars-or-dots-and-visually-indicate-the-active-slide-e-g-size-opacity-filled-state-animation-while-keeping-all-user-facing-text-in-english",
+      "title": "Add a creative bottom slide navigation UI for the Home hero slideshow using rounded bars or dots, and visually indicate the active slide (e.g., size/opacity/filled state/animation) while keeping all user-facing text in English.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-slideshow-images-are-served-as-static-frontend-assets-under-frontend-public-assets-generated-and-the-hero-slideshow-references-those-exact-public-paths-e-g-assets-generated",
+      "title": "Ensure all slideshow images are served as static frontend assets under `frontend/public/assets/generated/` and the hero slideshow references those exact public paths (e.g., `/assets/generated/...`).",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-home-page-hero-slideshow-bottom-navigation-so-it-renders-as-small-round-visually-polished-white-dots-one-per-slide-that-are-interactive-clickable-for-navigation-and-compatible-with-the-existing-infinite-loop-behavior",
+      "title": "Update the Home page hero slideshow bottom navigation so it renders as small, round, visually polished white dots (one per slide) that are interactive/clickable for navigation and compatible with the existing infinite-loop behavior.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-home-hero-slideshow-bottom-navigation-dots-rendered-by-frontend-src-components-home-herocarousel-tsx-to-match-the-dot-style-shown-in-the-uploaded-screenshot-img-8637-png-exactly-small-circular-dots-light-gray-inactive-darker-filled-active-dot-with-generous-spacing-between-dots-centered",
+      "title": "Update the Home hero slideshow bottom navigation dots (rendered by `frontend/src/components/home/HeroCarousel.tsx`) to match the dot style shown in the uploaded screenshot `IMG_8637.png` exactly: small circular dots, light gray/inactive, darker/filled active dot, with generous spacing between dots, centered.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-place-the-hero-slideshow-navigation-dots-directly-below-the-photo-slideshow-below-the-slideshow-media-area-and-keep-them-horizontally-centered-across-desktop-and-mobile-layouts",
+      "title": "Place the hero slideshow navigation dots directly below the photo slideshow (below the slideshow media area) and keep them horizontally centered across desktop and mobile layouts.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-reorder-the-home-hero-slideshow-images-from-the-current-sequence-1-2-3-4-5-6-7-to-the-new-sequence-3-7-5-6-2-1-4-by-reordering-the-existing-carouselslides-array-in-frontend-src-components-home-herocarousel-tsx-do-not-rename-assets-only-change-their-order",
+      "title": "Reorder the Home hero slideshow images from the current sequence 1,2,3,4,5,6,7 to the new sequence 3,7,5,6,2,1,4 by reordering the existing `carouselSlides` array in `frontend/src/components/home/HeroCarousel.tsx` (do not rename assets; only change their order).",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-home-page-hero-slideshow-frontend-src-components-home-herocarousel-tsx-replace-the-slide-corresponding-to-image-2-in-the-reordered-sequence-3-7-5-6-2-1-4-i-e-the-5th-slide-position-in-that-sequence-so-it-displays-the-latest-uploaded-photo-image-8-png-instead-of-the-current-old-photo-while-keeping-the-total-number-of-slides-unchanged-and-keeping-all-user-facing-text-including-alt-text-and-aria-label-s-in-english",
+      "title": "In the Home page hero slideshow (`frontend/src/components/home/HeroCarousel.tsx`), replace the slide corresponding to image \"2\" in the reordered sequence `3,7,5,6,2,1,4` (i.e., the 5th slide position in that sequence) so it displays the latest uploaded photo (`image-8.png`) instead of the current/old photo, while keeping the total number of slides unchanged and keeping all user-facing text (including `alt` text and `aria-label`s) in English.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-newly-uploaded-engineering-layout-photo-from-the-user-uploads-image-9-png-image-10-png-as-a-static-frontend-asset-at-frontend-public-assets-generated-hero-slide-latest-dim-1600x700-png-and-ensure-it-loads-successfully-at-runtime-from-the-public-path-assets-generated-hero-slide-latest-dim-1600x700-png",
+      "title": "Add the newly uploaded engineering-layout photo (from the user uploads `image-9.png` / `image-10.png`) as a static frontend asset at `frontend/public/assets/generated/hero-slide-latest.dim_1600x700.png` and ensure it loads successfully at runtime from the public path `/assets/generated/hero-slide-latest.dim_1600x700.png`.",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-mobile-menu-layout-in-frontend-src-components-layout-siteheader-tsx-by-shifting-the-four-navigation-links-home-about-solutions-contact-slightly-downward-so-they-no-longer-overlap-with-the-close-x-button-without-moving-the-close-x-button-itself",
+      "title": "Fix the mobile menu layout in `frontend/src/components/layout/SiteHeader.tsx` by shifting the four navigation links (Home, About, Solutions, Contact) slightly downward so they no longer overlap with the close (X) button, without moving the close (X) button itself.",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-home-hero-slideshow-in-frontend-src-components-home-herocarousel-tsx-to-replace-the-same-slide-previously-replaced-the-5th-slide-position-in-the-reordered-sequence-so-it-displays-the-newly-uploaded-image-image-13-png-instead-of-the-current-assets-generated-hero-slide-latest-dim-1600x700-png-keeping-the-total-number-of-slides-unchanged-and-keeping-all-user-facing-text-including-alt-text-and-aria-label-s-in-english",
+      "title": "Update the Home hero slideshow in `frontend/src/components/home/HeroCarousel.tsx` to replace the same slide previously replaced (the 5th slide position in the reordered sequence) so it displays the newly uploaded image (`image-13.png`) instead of the current `/assets/generated/hero-slide-latest.dim_1600x700.png`, keeping the total number of slides unchanged and keeping all user-facing text (including `alt` text and `aria-label`s) in English.",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-home-hero-slideshow-in-frontend-src-components-home-herocarousel-tsx-by-deleting-the-slide-that-was-previously-being-replaced-the-5th-slide-position-in-the-current-reordered-sequence-so-it-is-completely-removed-from-carouselslides-not-replaced-in-place",
+      "title": "Update the Home hero slideshow in `frontend/src/components/home/HeroCarousel.tsx` by deleting the slide that was previously being replaced (the 5th slide position in the current reordered sequence) so it is completely removed from `carouselSlides` (not replaced in-place).",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-user-uploaded-image-image-14-png-as-a-brand-new-final-slide-in-the-home-hero-slideshow-append-to-the-end-of-carouselslides-increasing-the-total-slide-count-by-1-and-reference-it-via-a-static-public-asset-path-under-assets-generated",
+      "title": "Add the user-uploaded image `image-14.png` as a brand-new final slide in the Home hero slideshow (append to the end of `carouselSlides`), increasing the total slide count by 1, and reference it via a static public asset path under `/assets/generated/`.",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-email-contact-text-element-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-2-div-1-div-1-div-1-div-1-div-2-div-1-div-2-p-1-on-the-contact-page-so-it-displays-exactly-sales-linexautomation-com",
+      "title": "Update ONLY the Email contact text element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/p[1]` (on the Contact page) so it displays exactly: `sales@linexautomation.com`.",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-phone-contact-text-element-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-2-div-1-div-1-div-1-div-1-div-2-div-2-div-2-p-1-on-the-contact-page-so-it-displays-exactly-91-8810234064",
+      "title": "Update ONLY the Phone contact text element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/p[1]` (on the Contact page) so it displays exactly: `+91 8810234064`.",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-selected-contact-form-input-field-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-2-div-1-div-1-div-2-div-1-form-1-div-3-input-1-so-its-placeholder-text-is-exactly-your-email-address-or-mobile-number",
+      "title": "Update ONLY the selected contact form input field at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[3]/input[1]` so its placeholder text is exactly: `Your Email address or Mobile number`.",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-selected-home-page-hero-headline-span-element-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-1-div-2-div-1-div-1-div-1-h1-1-span-1-implemented-in-frontend-src-pages-homepage-tsx-to-animate-its-text-with-a-typing-effect-that-cycles-through-the-words-planning-precision-performance-deleting-each-complete-word-with-a-backspace-effect-before-typing-the-next-and-repeating-this-loop-continuously-do-not-change-the-span-s-existing-font-size-tailwind-classes-or-color-styling",
+      "title": "Update ONLY the selected Home page hero headline span element (XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/h1[1]/span[1]`, implemented in `frontend/src/pages/HomePage.tsx`) to animate its text with a typing effect that cycles through the words `Planning` → `Precision` → `Performance`, deleting each complete word with a backspace effect before typing the next, and repeating this loop continuously. Do not change the span’s existing font, size, Tailwind classes, or color styling.",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -257,6 +478,140 @@
       "reqIds": [
         "REQ-14"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Replace the old site logo with the user-uploaded image file `LINEX-removebg-preview.png` (ensure it is the one used for header branding and anywhere else the old logo appears).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add the user-uploaded logo file `LINEX-removebg-preview.png` to the deployed frontend static assets so it is loadable at a stable public path (e.g., under `frontend/public/assets/generated/`) and can be referenced directly by the header logo `<img>`.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Update Services icons: set Servo (Element 1) to a new gear icon and set Energy Management (Element 2) to a lightning symbol (apply to the Services UI icons).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Double the header logo size in the site header (make the logo 2x larger).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Remove the selected logo image from the footer and make the company name text use a heavier weight of the current font (bolder, improved typography).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Update the selected paragraph text to: “Comprehensive solutions for modern industrial operations.”",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add an automatically sideways-scrolling photo gallery/carousel with additional photos related to Industry Automation, Siemens PLCs, PLC Control Panels, PCS7 SCADA, Schneider PME/EMS software, Siemens Servo Drives, and VFDs.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Update Home hero slideshow bottom navigation to use small, round, interactive white dots (one per slide) for infinite-loop navigation; dots should be visually polished.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Use one unique real-world high-quality photo per hero slideshow slide (no duplicate images) mapped to the requested topics (Siemens Automation, PLC Control Panels, PCS7 SCADA, Schneider Power Monitoring Expert).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Replace current Home hero slideshow photos with the user-provided photos previously shared (update the slideshow to use those assets).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Refine Home hero slideshow dot navigation styling: use softer (less bright) dots and increase spacing between dots so they are not crowded; keep dot size roughly the same and keep it simple.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Update Home hero slideshow dot navigation to exactly match the dot style shown in the user’s screenshot, and place the dots directly below the slideshow.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Reorder the Home hero slideshow images from the current sequence 1,2,3,4,5,6,7 to the new sequence 3,7,5,6,2,1,4.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "In the Home hero slideshow using the reordered sequence 3,7,5,6,2,1,4, replace the slide corresponding to image '2' (i.e., the 5th position in the new sequence) with the latest user-provided photo, keeping the total number of slides the same.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "In `frontend/src/components/home/HeroCarousel.tsx`, update the hero slideshow so the slide corresponding to image “2” in the reordered sequence `3,7,5,6,2,1,4` (i.e., the 5th slide position) displays the newly uploaded engineering-layout photo by using `/assets/generated/hero-slide-latest.dim_1600x700.png`, keeping the total number of slides unchanged and keeping all user-facing text (including `alt` text and `aria-label`s) in English.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Replace the Home hero slideshow’s 5th slide image (the slide currently referencing `/assets/generated/hero-slide-latest.dim_1600x700.png` in `frontend/src/components/home/HeroCarousel.tsx`) so that it displays the user-uploaded laptop-with-schematic-drawings photo (`image-12.png`) exactly (not any generated/random laptop photo), while keeping the total number of slides unchanged and keeping all user-facing text (including `alt` text and `aria-label`s) in English.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "Fix mobile menu layout: shift the four nav buttons (Home/About/Solutions/Contact) slightly downward so they do not overlap with the close (X) button; do not move the X button.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Update Home hero slideshow: delete the previously replaced 5th slide in reordered sequence (3,7,5,6,2,1,4), then add the newly uploaded image (image-14.png) as a brand-new final slide (increasing total slide count by 1), and rebuild/deploy the site.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Rebuild and redeploy the site after the slideshow changes, and verify the deployed Home page loads successfully and the hero slideshow renders with the updated slide set (deleted slide removed, `image-14.png` present as the last slide).",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-31",
+      "summary": "Update displayed contact info: change email to sales@linexautomation.com, change phone to +91 8810234064, and change the relevant input placeholder to \"Your Email address or Mobile number\".",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-32",
+      "summary": "Add a typing/backspace text animation on the selected span that cycles through the words \"Planning\" → \"Precision\" → \"Performance\" repeatedly, without changing the existing font or color.",
+      "reqIds": [],
       "status": "pending"
     }
   ],

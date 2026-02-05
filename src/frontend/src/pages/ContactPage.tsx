@@ -47,7 +47,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="mb-1 font-semibold">Email</h3>
-                      <p className="text-muted-foreground">info@linexautomations.com</p>
+                      <p className="text-muted-foreground">sales@linexautomation.com</p>
                     </div>
                   </div>
 
@@ -57,7 +57,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="mb-1 font-semibold">Phone</h3>
-                      <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                      <p className="text-muted-foreground">+91 8810234064</p>
                     </div>
                   </div>
 

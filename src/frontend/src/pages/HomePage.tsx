@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,6 +6,7 @@ import ServiceCard from '@/components/services/ServiceCard';
 import { services } from '@/content/services';
 import { useSeo } from '@/hooks/useSeo';
 import RevealOnScroll from '@/components/motion/RevealOnScroll';
+import HeroCarousel from '@/components/home/HeroCarousel';
 
 export default function HomePage() {
   useSeo({
@@ -13,6 +14,42 @@ export default function HomePage() {
     description:
       'Leading provider of PLC, HMI, SCADA, Servos, VFD, Control Panels, and Energy Management Systems for industrial automation.',
   });
+
+  const words = ['Planning', 'Precision', 'Performance'];
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentWord = words[currentWordIndex];
+    const typingSpeed = isDeleting ? 50 : 100;
+    const pauseAfterTyping = 2000;
+    const pauseAfterDeleting = 500;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing phase
+        if (currentText.length < currentWord.length) {
+          setCurrentText(currentWord.slice(0, currentText.length + 1));
+        } else {
+          // Finished typing, pause then start deleting
+          setTimeout(() => setIsDeleting(true), pauseAfterTyping);
+        }
+      } else {
+        // Deleting phase
+        if (currentText.length > 0) {
+          setCurrentText(currentText.slice(0, -1));
+        } else {
+          // Finished deleting, move to next word
+          setIsDeleting(false);
+          setCurrentWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+          setTimeout(() => {}, pauseAfterDeleting);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentWordIndex, words]);
 
   return (
     <div className="flex flex-col">
@@ -25,11 +62,13 @@ export default function HomePage() {
               <div className="space-y-4">
                 <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
                   Industrial Automation
-                  <span className="block text-industrial-accent">Excellence</span>
+                  <span className="block text-industrial-accent">
+                    {currentText}
+                    <span className="animate-pulse">|</span>
+                  </span>
                 </h1>
                 <p className="text-lg text-muted-foreground md:text-xl">
-                  Comprehensive solutions in PLC, HMI, SCADA, Servos, VFD, Control Panels, and
-                  Energy Management Systems for modern industrial operations.
+                  Comprehensive solutions for modern industrial operations.
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
@@ -46,11 +85,7 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <div className="aspect-[16/10] overflow-hidden rounded-lg border border-border/50 bg-muted shadow-2xl">
-                <img
-                  src="/assets/generated/hero-automation.dim_1600x700.png"
-                  alt="Industrial automation control systems"
-                  className="h-full w-full object-cover"
-                />
+                <HeroCarousel />
               </div>
             </div>
           </div>

@@ -1,4 +1,24 @@
 {
   "kind": "feature_evidence_report",
-  "features": []
+  "features": [
+    {
+      "featureId": "feature-update-only-the-selected-home-page-hero-headline-span-element-xpath-html-1-body-1-div-1-div-1-main-1-div-1-section-1-div-2-div-1-div-1-div-1-h1-1-span-1-implemented-in-frontend-src-pages-homepage-tsx-to-animate-its-text-with-a-typing-effect-that-cycles-through-the-words-planning-precision-performance-deleting-each-complete-word-with-a-backspace-effect-before-typing-the-next-and-repeating-this-loop-continuously-do-not-change-the-span-s-existing-font-size-tailwind-classes-or-color-styling",
+      "featureTitle": "Update ONLY the selected Home page hero headline span element (XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/h1[1]/span[1]`, implemented in `frontend/src/pages/HomePage.tsx`) to animate its text with a typing effect that cycles through the words `Planning` → `Precision` → `Performance`, deleting each complete word with a backspace effect before typing the next, and repeating this loop continuously. Do not change the span’s existing font, size, Tailwind classes, or color styling.",
+      "files": [
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-44"
+      ],
+      "confidence": "high"
+    }
+  ]
 }

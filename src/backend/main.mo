@@ -54,6 +54,9 @@ actor {
   };
 
   public query ({ caller }) func getUserProfile(user : Principal) : async ?UserProfile {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can access profiles");
+    };
     if (caller != user and not AccessControl.isAdmin(accessControlState, caller)) {
       Runtime.trap("Unauthorized: Can only view your own profile");
     };
