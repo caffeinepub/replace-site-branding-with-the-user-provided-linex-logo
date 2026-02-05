@@ -1,78 +1,32 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix and standardize site branding logo and icon assets",
+  "title": "Replace SiteHeader logo with user-provided Linex Automation logo",
   "requirements": [
     {
-      "id": "REQ-4",
-      "summary": "Ensure the user-provided logo PNG exists in frontend static assets at the exact path referenced by the UI.",
+      "id": "REQ-14",
+      "summary": "Ensure the header logo <img> always renders the user-provided Linex Automation logo via centralized branding config and that the static asset is present.",
       "acceptanceCriteria": [
-        "`frontend/public/assets/generated/linex-logo-user.dim_512x512.png` exists in the built output and can be fetched directly from the deployed site at `/assets/generated/linex-logo-user.dim_512x512.png` (HTTP 200).",
-        "The image is a valid PNG and displays correctly in the browser (not broken/missing)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/assets/generated/linex-logo-user.dim_512x512.png",
-          "operation": "create",
-          "description": "Add the user-provided logo PNG as a static asset so it is served from `/assets/generated/linex-logo-user.dim_512x512.png` in production builds."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Standardize header and footer branding to always use the user-provided logo and eliminate any remaining old-logo references.",
-      "acceptanceCriteria": [
-        "`frontend/src/components/layout/SiteHeader.tsx` uses `/assets/generated/linex-logo-user.dim_512x512.png` for the branding image and it visibly renders on the Home, About, Solutions, and Contact pages.",
-        "`frontend/src/components/layout/SiteFooter.tsx` uses `/assets/generated/linex-logo-user.dim_512x512.png` for the branding image and it visibly renders on the Home, About, Solutions, and Contact pages.",
-        "No remaining references to `/assets/generated/linex-logo.dim_512x512.png` are used for the header/footer branding image in the codebase."
+        "In `frontend/src/components/layout/SiteHeader.tsx`, the header logo `<img>` uses `src={BRANDING.logo.main}` and `alt={BRANDING.logo.alt}` (no hardcoded old logo path).",
+        "`frontend/src/config/branding.ts` sets `BRANDING.logo.main` to `/assets/generated/linex-logo-user.dim_512x512.png` and `BRANDING.logo.alt` remains English.",
+        "The static asset `frontend/public/assets/generated/linex-logo-user.dim_512x512.png` exists in the deployed frontend build output and loads successfully (HTTP 200) when requested directly.",
+        "After deployment, the header logo displayed in the UI is the user-provided Linex Automation logo, not `linex-logo.dim_512x512.png`."
       ],
       "file_operations": [
         {
           "path": "frontend/src/config/branding.ts",
-          "operation": "create",
-          "description": "Create a single source of truth for brand asset paths (including `/assets/generated/linex-logo-user.dim_512x512.png`) and branding alt text to prevent regressions to the old logo."
+          "operation": "modify",
+          "description": "Confirm `BRANDING.logo.main` points to `/assets/generated/linex-logo-user.dim_512x512.png` and keep `BRANDING.logo.alt` in English; ensure no reference to the old generated logo path remains here."
         },
         {
           "path": "frontend/src/components/layout/SiteHeader.tsx",
           "operation": "modify",
-          "description": "Update header branding image usage to reference the centralized branding configuration and ensure it resolves to `/assets/generated/linex-logo-user.dim_512x512.png` (and not the old generated logo)."
+          "description": "Ensure the specific header logo `<img>` at the selected location uses `src={BRANDING.logo.main}` and `alt={BRANDING.logo.alt}` only (no hardcoded logo path, and no reference to `/assets/generated/linex-logo.dim_512x512.png`)."
         },
         {
-          "path": "frontend/src/components/layout/SiteFooter.tsx",
+          "path": "frontend/public/assets/generated/linex-logo-user.dim_512x512.png",
           "operation": "modify",
-          "description": "Update footer branding image usage to reference the centralized branding configuration and ensure it resolves to `/assets/generated/linex-logo-user.dim_512x512.png` (and not the old generated logo)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Ensure all brand/SEO icon assets referenced by index.html exist as deployed static assets and load correctly.",
-      "acceptanceCriteria": [
-        "`/assets/generated/favicon.dim_32x32.png` loads successfully on the deployed site.",
-        "`/assets/generated/apple-touch-icon.dim_180x180.png` loads successfully on the deployed site.",
-        "`/assets/generated/og-image.dim_1200x630.png` loads successfully on the deployed site.",
-        "All user-facing titles/descriptions/alt text related to branding remain in English."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/public/assets/generated/favicon.dim_32x32.png",
-          "operation": "create",
-          "description": "Add the generated favicon asset to the deployed static assets so it is available at `/assets/generated/favicon.dim_32x32.png`."
-        },
-        {
-          "path": "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
-          "operation": "create",
-          "description": "Add the generated Apple touch icon asset to the deployed static assets so it is available at `/assets/generated/apple-touch-icon.dim_180x180.png`."
-        },
-        {
-          "path": "frontend/public/assets/generated/og-image.dim_1200x630.png",
-          "operation": "create",
-          "description": "Add the generated Open Graph image asset to the deployed static assets so it is available at `/assets/generated/og-image.dim_1200x630.png`."
-        },
-        {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Verify the favicon, apple-touch-icon, and og-image tags reference the correct `/assets/generated/...` paths and keep all branding-related metadata in English."
+          "description": "Add/replace the static asset so the deployed build includes `frontend/public/assets/generated/linex-logo-user.dim_512x512.png` and it loads successfully when requested directly."
         }
       ]
     }

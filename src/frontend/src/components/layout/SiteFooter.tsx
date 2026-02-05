@@ -14,7 +14,7 @@ export default function SiteFooter() {
                 className="h-12 w-auto"
               />
             </div>
-            <h3 className="mb-3 text-sm font-semibold">{BRANDING.company.name}</h3>
+            <h3 className="mb-3 text-sm font-bold uppercase">{BRANDING.company.name}</h3>
             <p className="text-sm text-muted-foreground">
               {BRANDING.company.tagline}
             </p>

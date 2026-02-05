@@ -1,11 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Fix site-wide branding so the user-provided logo and all referenced SEO/icon assets load correctly across the deployed site.
+**Goal:** Replace the header logo with the user-provided Linex Automation logo and ensure the old generated logo is no longer used in the header.
 
 **Planned changes:**
-- Ensure the user-provided logo file is present in frontend static assets and is fetchable at `/assets/generated/linex-logo-user.dim_512x512.png`.
-- Update header and footer branding to consistently use `/assets/generated/linex-logo-user.dim_512x512.png` on all main pages and remove any remaining usage of the old generated logo path for header/footer branding.
-- Verify that the favicon, apple-touch icon, and social preview image referenced by `frontend/index.html` exist and load successfully from the deployed site, keeping branding-related titles/descriptions/alt text in English.
+- Update `frontend/src/components/layout/SiteHeader.tsx` so the header logo `<img>` uses `src={BRANDING.logo.main}` and `alt={BRANDING.logo.alt}` (no hardcoded logo path).
+- Update `frontend/src/config/branding.ts` to set `BRANDING.logo.main` to `/assets/generated/linex-logo-user.dim_512x512.png` while keeping the alt text in English.
+- Ensure the static asset `frontend/public/assets/generated/linex-logo-user.dim_512x512.png` is present and served in the deployed build output.
 
-**User-visible outcome:** The correct (user-provided) logo appears in the header and footer across the site, and all browser/SEO branding icons (favicon, apple-touch icon, OG image) load without broken/missing assets.
+**User-visible outcome:** The header displays the user-provided Linex Automation logo instead of the previous generated logo.

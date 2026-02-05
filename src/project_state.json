@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 9,
+  "projectStateVersion": 17,
   "summary": "Initial full-stack Internet Computer (Motoko + React) app scaffolded with authorization utilities, Internet Identity authentication hooks, multi-page marketing site (Home/Solutions/About/Contact), services browsing UI, contact form, and build/deploy templates; includes generated brand/hero image assets.",
   "architectural_notes": [
     "Frontend uses React + Vite with Tailwind styling and a shared SiteLayout (header/footer).",
@@ -9,10 +9,10 @@
     "Build/deploy scaffolding includes dockerized and ICP CLI-oriented templates plus image resize/prune scripts."
   ],
   "known_issues": [
-    "Reported issue: user-provided logo/branding was not updated or reflected in the deployed site."
+    "Reported issue: user-provided logo/branding was not updated or reflected in the deployed site.",
+    "Deployed site is still showing the wrong logo; user requests removing the current logo and using the previously shared Linex Automation logo instead."
   ],
   "isFixRequest": true,
-  "imageRequirements": "## Required Images\n- Favicon derived from the user-provided logo (favicon.dim_32x32.png)\n- Apple touch icon derived from the user-provided logo (apple-touch-icon.dim_180x180.png)\n- Social preview image derived from the user-provided logo on a clean background (og-image.dim_1200x630.png)\n\n## Edit Images\n- Replace the existing generated logo with the user-provided logo styling (linex-logo.dim_512x512.png > linex-logo-user.dim_512x512.png)",
   "generatedImages": [
     {
       "filename": "frontend/public/assets/generated/hero-automation.dim_1600x700.png",
@@ -174,6 +174,46 @@
         "REQ-6"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-the-user-uploaded-logo-image-linex-png-to-the-deployed-frontend-static-assets-and-ensure-it-is-loadable-at-assets-generated-linex-logo-user-dim-512x512-png",
+      "title": "Add the user-uploaded logo image (LINEX.png) to the deployed frontend static assets and ensure it is loadable at `/assets/generated/linex-logo-user.dim_512x512.png`.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-brand-seo-icon-assets-referenced-by-frontend-index-html-exist-as-static-files-under-frontend-public-assets-generated-and-load-correctly-when-deployed",
+      "title": "Ensure all brand/SEO icon assets referenced by `frontend/index.html` exist as static files under `frontend/public/assets/generated/` and load correctly when deployed.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-increase-the-global-site-header-height-by-updating-the-header-container-sizing-in-frontend-src-components-layout-siteheader-tsx-so-the-header-renders-taller-on-all-pages-desktop-and-mobile-while-keeping-the-existing-layout-logo-left-nav-menu-right-vertically-centered",
+      "title": "Increase the global site header height by updating the header container sizing in `frontend/src/components/layout/SiteHeader.tsx` so the header renders taller on all pages (desktop and mobile), while keeping the existing layout (logo left, nav/menu right) vertically centered.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-site-s-displayed-brand-name-text-so-that-linex-automation-renders-as-all-caps-and-bold-everywhere-it-appears-in-the-ui-e-g-header-branding-and-footer-branding",
+      "title": "Update the site’s displayed brand name text so that “Linex Automation” renders as ALL CAPS and bold everywhere it appears in the UI (e.g., header branding and footer branding).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-centralized-branding-configuration-to-match-the-new-brand-name-casing-so-components-that-read-from-branding-config-display-linex-automation-consistently",
+      "title": "Update centralized branding configuration to match the new brand name casing so components that read from branding config display “LINEX AUTOMATION” consistently.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -181,6 +221,42 @@
       "id": "AR-1",
       "summary": "Replace/update site branding to use the user-provided logo asset across the app (header/footer/SEO as applicable)",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Verify site-wide logo rendering uses `BRANDING.logo.main` and displays the user-provided logo in both the header and the footer without falling back to `/assets/generated/linex-logo.dim_512x512.png`.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Keep all user-facing branding/SEO text in English after the logo update (including logo alt text and page SEO titles/descriptions).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Increase the site header height (make the header a bit taller).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Update the UI text \"Linex Automation\" to be ALL CAPS and bold wherever it appears (branding/heading).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Update the header logo <img> element (XPath: /html/body/div/div/header/div/a/img) so it always renders the user-provided Linex Automation logo (served from `/assets/generated/linex-logo-user.dim_512x512.png`) and does not display the old generated logo (`/assets/generated/linex-logo.dim_512x512.png`).",
+      "reqIds": [
+        "REQ-14"
+      ],
       "status": "pending"
     }
   ],

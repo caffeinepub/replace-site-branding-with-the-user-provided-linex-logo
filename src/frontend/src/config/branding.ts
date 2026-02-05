@@ -7,7 +7,7 @@ export const BRANDING = {
   // Logo assets
   logo: {
     main: '/assets/generated/linex-logo-user.dim_512x512.png',
-    alt: 'Linex Automations Logo',
+    alt: 'LINEX AUTOMATION Logo',
   },
   
   // SEO and meta assets
@@ -17,7 +17,7 @@ export const BRANDING = {
   
   // Company information
   company: {
-    name: 'Linex Automations',
+    name: 'LINEX AUTOMATION',
     tagline: 'Industrial automation solutions for modern manufacturing and process control.',
   },
 } as const;

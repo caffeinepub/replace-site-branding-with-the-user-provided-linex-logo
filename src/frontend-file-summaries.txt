@@ -1,10 +1,10 @@
 {
   "frontend/src/App.tsx": "Main application component that sets up TanStack Router with routes for Home, About, Solutions, and Contact pages, all wrapped in a shared layout.",
   "frontend/src/components/layout/SiteLayout.tsx": "Layout wrapper component that provides consistent header, main content area with Outlet for route rendering, and footer across all pages.",
-  "frontend/src/components/layout/SiteHeader.tsx": "Responsive header component with the user-provided LINEX logo imported from centralized branding config, desktop navigation menu, and mobile sheet menu with active route highlighting.",
-  "frontend/src/components/layout/SiteFooter.tsx": "Footer component with the user-provided LINEX logo imported from centralized branding config, company information, quick links, contact section, and attribution with caffeine.ai link.",
+  "frontend/src/components/layout/SiteHeader.tsx": "Responsive header component with brand name now displayed in uppercase and bold using uppercase class on the span element.",
+  "frontend/src/components/layout/SiteFooter.tsx": "Footer component with brand name now displayed in uppercase and bold using font-bold and uppercase classes on the h3 element.",
   "frontend/src/pages/HomePage.tsx": "Home page featuring hero section with CTA buttons, services overview grid with cards, and call-to-action section encouraging contact.",
-  "frontend/src/pages/AboutPage.tsx": "About page describing Linex Automations' expertise, capabilities across automation technologies, and commitment to excellence.",
+  "frontend/src/pages/AboutPage.tsx": "About page with all visible occurrences of the brand name updated to \"LINEX AUTOMATION\" in uppercase and bold using inline span elements with font-bold and uppercase classes.",
   "frontend/src/pages/SolutionsPage.tsx": "Solutions page with filterable/searchable services grid and detail panel dialog for viewing comprehensive service information.",
   "frontend/src/pages/ContactPage.tsx": "Contact page with contact information display and integrated contact form for inquiries.",
   "frontend/src/components/services/ServiceCard.tsx": "Interactive card component displaying service summary with icon, title, description, and hover effects that opens detail panel on click.",
@@ -17,7 +17,7 @@
   "frontend/src/hooks/useReducedMotion.ts": "Hook that detects user's prefers-reduced-motion setting for accessible animations.",
   "frontend/src/hooks/useSeo.ts": "Hook for dynamically setting page title and meta tags (description, Open Graph, Twitter) for SEO.",
   "frontend/src/index.css": "Global styles with industrial-themed OKLCH color system (charcoal neutrals with amber accent), focus states, and utility classes.",
-  "frontend/index.html": "HTML entry point with SEO meta tags, favicon, apple-touch-icon, Open Graph, and Twitter card metadata wired to the new brand assets.",
+  "frontend/index.html": "HTML entry point with document title and meta tags updated to use \"LINEX AUTOMATION\" in all caps for consistent branding.",
   "frontend/tailwind.config.js": "Tailwind configuration extending theme with industrial color palette, custom industrial-accent color, and Inter font family.",
-  "frontend/src/config/branding.ts": "Centralized branding configuration providing single source of truth for all brand assets (logo, favicon, icons) and company metadata to prevent logo path regressions."
+  "frontend/src/config/branding.ts": "Centralized branding configuration with company name updated to \"LINEX AUTOMATION\" in all caps and logo alt text updated accordingly."
 }

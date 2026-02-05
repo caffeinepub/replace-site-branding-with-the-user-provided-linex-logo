@@ -1,86 +1,39 @@
 {
   "kind": "build_request",
-  "title": "Fix missing/incorrect logo update across site branding",
+  "title": "Replace header logo image with previously shared Linex Automation logo",
   "priority": "high",
   "requirements": [
     {
-      "id": "REQ-4",
-      "text": "Ensure the user-provided logo image asset exists in the deployed frontend static assets and is loadable at the path referenced by the UI (`/assets/generated/linex-logo-user.dim_512x512.png`).",
+      "id": "REQ-14",
+      "text": "Update the header logo <img> element (XPath: /html/body/div/div/header/div/a/img) so it always renders the user-provided Linex Automation logo (served from `/assets/generated/linex-logo-user.dim_512x512.png`) and does not display the old generated logo (`/assets/generated/linex-logo.dim_512x512.png`).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4",
-          "msg-6"
+          "msg-5"
         ],
         "quotes": [
-          "you did not update the logo",
-          "you did not updat my logo"
+          "i want you remove this logo and add my linex automation logo i shared with you before"
         ]
       },
       "acceptanceCriteria": [
-        "`frontend/public/assets/generated/linex-logo-user.dim_512x512.png` exists in the built output and can be fetched directly from the deployed site at `/assets/generated/linex-logo-user.dim_512x512.png` (HTTP 200).",
-        "The image is a valid PNG and displays correctly in the browser (not broken/missing)."
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Verify and correct site-wide logo usage so the header and footer branding always render the user-provided logo (and do not fall back to the old generated logo).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4",
-          "msg-6"
-        ],
-        "quotes": [
-          "you did not update the logo",
-          "you did not updat my logo"
-        ]
-      },
-      "acceptanceCriteria": [
-        "`frontend/src/components/layout/SiteHeader.tsx` uses `/assets/generated/linex-logo-user.dim_512x512.png` for the branding image and it visibly renders on the Home, About, Solutions, and Contact pages.",
-        "`frontend/src/components/layout/SiteFooter.tsx` uses `/assets/generated/linex-logo-user.dim_512x512.png` for the branding image and it visibly renders on the Home, About, Solutions, and Contact pages.",
-        "No remaining references to `/assets/generated/linex-logo.dim_512x512.png` are used for the header/footer branding image in the codebase."
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Ensure all brand/SEO icon assets referenced in `frontend/index.html` exist and load correctly from the deployed site.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4",
-          "msg-6"
-        ],
-        "quotes": [
-          "you did not update the logo",
-          "you did not updat my logo"
-        ]
-      },
-      "acceptanceCriteria": [
-        "`/assets/generated/favicon.dim_32x32.png` loads successfully on the deployed site.",
-        "`/assets/generated/apple-touch-icon.dim_180x180.png` loads successfully on the deployed site.",
-        "`/assets/generated/og-image.dim_1200x630.png` loads successfully on the deployed site.",
-        "All user-facing titles/descriptions/alt text related to branding remain in English."
+        "In `frontend/src/components/layout/SiteHeader.tsx`, the header logo `<img>` uses `src={BRANDING.logo.main}` and `alt={BRANDING.logo.alt}` (no hardcoded old logo path).",
+        "`frontend/src/config/branding.ts` sets `BRANDING.logo.main` to `/assets/generated/linex-logo-user.dim_512x512.png` and `BRANDING.logo.alt` remains English.",
+        "The static asset `frontend/public/assets/generated/linex-logo-user.dim_512x512.png` exists in the deployed frontend build output and loads successfully (HTTP 200) when requested directly.",
+        "After deployment, the header logo displayed in the UI is the user-provided Linex Automation logo, not `linex-logo.dim_512x512.png`."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, or anything in `frontend/src/components/ui` (compose instead of modifying read-only UI components).",
-    "Keep the backend as a single Motoko actor (no new backend services)."
+    "Apply changes ONLY to the selected element in the header (the logo <img> at XPath /html/body/div/div/header/div/a/img).",
+    "Use English for any user-facing text."
   ],
   "nonGoals": [
-    "Adding new pages or new product features unrelated to branding/logo.",
-    "Changing authentication behavior (Internet Identity) or backend data models."
+    "Do not change footer branding/logo placement or any other UI elements beyond the selected header logo <img>.",
+    "Do not introduce new authentication, backend changes, or new pages."
   ],
   "imageRequirements": {
-    "required": [
-      "Favicon derived from the user-provided logo (favicon.dim_32x32.png)",
-      "Apple touch icon derived from the user-provided logo (apple-touch-icon.dim_180x180.png)",
-      "Social preview image derived from the user-provided logo on a clean background (og-image.dim_1200x630.png)"
-    ],
-    "edits": [
-      "Replace the existing generated logo with the user-provided logo styling (linex-logo.dim_512x512.png > linex-logo-user.dim_512x512.png)"
-    ]
+    "required": [],
+    "edits": []
   },
   "userProfileUpdate": {
     "goalsToAdd": [],

@@ -14,9 +14,9 @@ const capabilities = [
 
 export default function AboutPage() {
   useSeo({
-    title: 'About Linex Automations - Industrial Automation Experts',
+    title: 'About LINEX AUTOMATION - Industrial Automation Experts',
     description:
-      'Learn about Linex Automations, your trusted partner for comprehensive industrial automation solutions including PLC, HMI, SCADA, and energy management systems.',
+      'Learn about LINEX AUTOMATION, your trusted partner for comprehensive industrial automation solutions including PLC, HMI, SCADA, and energy management systems.',
   });
 
   return (
@@ -25,8 +25,8 @@ export default function AboutPage() {
         <div className="container">
           <RevealOnScroll>
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                About Linex Automations
+              <h1 className="mb-6 text-4xl font-bold uppercase tracking-tight sm:text-5xl">
+                About LINEX AUTOMATION
               </h1>
               <p className="text-lg text-muted-foreground md:text-xl">
                 Your trusted partner in industrial automation, delivering cutting-edge solutions
@@ -45,7 +45,7 @@ export default function AboutPage() {
                 <h2 className="text-3xl font-bold tracking-tight">Who We Are</h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Linex Automations is a leading provider of industrial automation solutions,
+                    <span className="font-bold uppercase">LINEX AUTOMATION</span> is a leading provider of industrial automation solutions,
                     specializing in the design, implementation, and support of advanced control
                     systems for modern manufacturing and process industries.
                   </p>
@@ -90,7 +90,7 @@ export default function AboutPage() {
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="mb-6 text-3xl font-bold tracking-tight">Our Commitment</h2>
               <p className="text-lg text-muted-foreground">
-                At Linex Automations, we are committed to delivering excellence in every project.
+                At <span className="font-bold uppercase">LINEX AUTOMATION</span>, we are committed to delivering excellence in every project.
                 From initial consultation through implementation and ongoing support, we partner
                 with our clients to ensure their automation systems deliver maximum value and
                 performance. Our focus on quality, reliability, and customer satisfaction has made
