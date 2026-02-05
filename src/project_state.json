@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 49,
-  "summary": "Initial full-stack Internet Computer (Motoko + React) app scaffolded with authorization utilities, Internet Identity authentication hooks, multi-page marketing site (Home/Solutions/About/Contact), services browsing UI, contact form, and build/deploy templates; includes generated brand/hero image assets.",
+  "projectStateVersion": 55,
+  "summary": "Project scope changed: convert the existing Internet Computer (Motoko + React) app into a frontend-only, fully static React/Vite site suitable for deployment on Netlify, removing all backend/canister code and Internet Identity integration while keeping the visible frontend UI unchanged.",
   "architectural_notes": [
     "Frontend uses React + Vite with Tailwind styling and a shared SiteLayout (header/footer).",
     "Authentication flow relies on Internet Identity; frontend constructs authenticated canister actors via hooks.",
@@ -11,7 +11,8 @@
     "Home page hero media should be implemented as a high-quality, creative slideshow (not an auto-marquee): infinite seamless loop, autoplay, supports manual swipe/drag and clickable bottom navigation (creative rounded bars/dots), cycling through the original hero image plus additional industrial/PLC/Schneider EMS/Siemens automation/servos/VFD images.",
     "Hero slideshow navigation: small round white dots, interactive (click/tap) and compatible with infinite looping; one dot per slide.",
     "Hero slideshow content: one unique high-quality real-world photo per slide; do not duplicate images across slides.",
-    "Hero slideshow change request: remove the 5th slide (image '2' position in reordered sequence 3,7,5,6,2,1,4) entirely and append a new final slide using the newly uploaded image (image-14.png), increasing slide count by one."
+    "Hero slideshow change request: remove the 5th slide (image '2' position in reordered sequence 3,7,5,6,2,1,4) entirely and append a new final slide using the newly uploaded image (image-14.png), increasing slide count by one.",
+    "New hero slideshow change request: remove the current last slide and append a new final slide using the user-provided image from https://ibb.co/4Rth5D8p."
   ],
   "known_issues": [
     "Reported issue: user-provided logo/branding was not updated or reflected in the deployed site.",
@@ -25,7 +26,7 @@
     "User requests changing hero slideshow structure: delete the previously replaced 5th slide (in reordered sequence 3,7,5,6,2,1,4) and add the new uploaded image (image-14.png) as the last slide; then rebuild/deploy.",
     "Project storage limit exceeded when user attempts to upload the original photo asset for the hero slideshow (blocks using the exact user-provided last-slide image)."
   ],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "generatedImages": [
     {
       "filename": "frontend/public/assets/generated/hero-automation.dim_1600x700.png",
@@ -435,6 +436,86 @@
         "REQ-44"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-in-the-home-page-hero-slideshow-frontend-src-components-home-herocarousel-tsx-delete-the-current-last-slide-from-the-carouselslides-array",
+      "title": "In the Home page hero slideshow (`frontend/src/components/home/HeroCarousel.tsx`), delete the current last slide from the `carouselSlides` array.",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-final-slide-to-the-home-page-hero-slideshow-using-the-user-provided-image-link-https-ibb-co-4rth5d8p-and-ensure-it-is-appended-to-the-end-of-the-carouselslides-array-in-frontend-src-components-home-herocarousel-tsx",
+      "title": "Add a new final slide to the Home page hero slideshow using the user-provided image link https://ibb.co/4Rth5D8p, and ensure it is appended to the end of the `carouselSlides` array in `frontend/src/components/home/HeroCarousel.tsx`.",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-store-the-image-from-https-ibb-co-4rth5d8p-as-a-static-frontend-asset-under-frontend-public-assets-generated-and-update-the-hero-slideshow-to-reference-that-exact-public-path-e-g-assets-generated",
+      "title": "Store the image from https://ibb.co/4Rth5D8p as a static frontend asset under `frontend/public/assets/generated/` and update the hero slideshow to reference that exact public path (e.g., `/assets/generated/...`).",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-only-the-last-slide-in-the-home-page-hero-slideshow-implemented-in-frontend-src-components-home-herocarousel-tsx-so-that-the-final-carouselslides-entry-displays-an-image-depicting-eplan-electrical-drawings-software-instead-of-the-current-last-slide-image-assets-generated-hero-slide-ibb-4rth5d8p-dim-1600x700-png",
+      "title": "Replace ONLY the last slide in the Home page hero slideshow (implemented in `frontend/src/components/home/HeroCarousel.tsx`) so that the final `carouselSlides` entry displays an image depicting EPLAN electrical drawings software, instead of the current last-slide image (`/assets/generated/hero-slide-ibb-4Rth5D8p.dim_1600x700.png`).",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-eplan-electrical-drawings-image-as-a-static-frontend-asset-under-frontend-public-assets-generated-and-ensure-the-home-hero-slideshow-references-that-exact-public-path-e-g-assets-generated",
+      "title": "Add the EPLAN electrical-drawings image as a static frontend asset under `frontend/public/assets/generated/` and ensure the Home hero slideshow references that exact public path (e.g., `/assets/generated/...`).",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-convert-the-project-into-a-frontend-only-fully-static-react-vite-site-suitable-for-netlify-deployment-by-removing-the-internet-computer-backend-canister-code-and-ic-specific-build-deploy-configuration-from-the-repo",
+      "title": "Convert the project into a frontend-only, fully static React/Vite site suitable for Netlify deployment by removing the Internet Computer backend canister code and IC-specific build/deploy configuration from the repo.",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-internet-identity-and-backend-actor-usage-from-the-runtime-by-switching-the-app-entrypoint-to-a-new-static-only-bootstrap-file-without-editing-any-frontend-immutable-paths-do-not-edit-frontend-src-main-tsx-or-the-immutable-ii-actor-hooks-files",
+      "title": "Remove Internet Identity and backend actor usage from the runtime by switching the app entrypoint to a new static-only bootstrap file without editing any frontend immutable paths (do not edit `frontend/src/main.tsx` or the immutable II/actor hooks files).",
+      "reqIds": [
+        "REQ-51"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-contact-form-so-it-does-not-attempt-any-backend-canister-submission-and-remains-visually-unchanged-it-must-behave-as-a-static-frontend-only-form-e-g-local-only-submission-handling-with-an-on-screen-success-failure-message-while-keeping-all-user-facing-text-in-english",
+      "title": "Update the Contact form so it does not attempt any backend/canister submission and remains visually unchanged; it must behave as a static frontend-only form (e.g., local-only submission handling with an on-screen success/failure message) while keeping all user-facing text in English.",
+      "reqIds": [
+        "REQ-52"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-deployment-netlify-friendly-for-an-spa-add-netlify-configuration-and-redirects-so-all-routes-home-about-solutions-contact-and-any-deep-links-load-correctly-on-refresh-and-direct-navigation",
+      "title": "Make the deployment Netlify-friendly for an SPA: add Netlify configuration and redirects so all routes (Home/About/Solutions/Contact and any deep links) load correctly on refresh and direct navigation.",
+      "reqIds": [
+        "REQ-53"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-keep-the-visible-frontend-ui-appearance-unchanged-while-performing-the-frontend-only-conversion-no-intentional-layout-styling-copy-or-content-changes-except-where-necessary-to-remove-backend-only-functionality",
+      "title": "Keep the visible frontend UI/appearance unchanged while performing the frontend-only conversion (no intentional layout, styling, copy, or content changes except where necessary to remove backend-only functionality).",
+      "reqIds": [
+        "REQ-54"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -611,6 +692,24 @@
     {
       "id": "AR-32",
       "summary": "Add a typing/backspace text animation on the selected span that cycles through the words \"Planning\" → \"Precision\" → \"Performance\" repeatedly, without changing the existing font or color.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-33",
+      "summary": "Home page hero slideshow: delete the current last slide, then add a new final slide using the user-provided image link https://ibb.co/4Rth5D8p (i.e., replace the last slide with this new image) and build/redeploy.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-34",
+      "summary": "Replace the last slide in the Home hero slideshow with an image showing EPLAN electrical drawings software (use the correct user-provided asset for that image).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-35",
+      "summary": "Convert project to frontend-only static site for Netlify: remove Motoko canister/backend code and configs, remove Internet Identity/authenticated actor hooks, strip/disable any backend-dependent logic (e.g., contact form submission) while keeping the existing frontend UI/appearance the same; add Netlify-friendly build/deploy configuration.",
       "reqIds": [],
       "status": "pending"
     }

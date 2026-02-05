@@ -10,27 +10,14 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export interface ContactFormSubmission {
-  'emailOrPhone' : string,
-  'name' : string,
-  'company' : [] | [string],
-  'message' : string,
-  'inquiryTopic' : string,
-}
-export interface UserProfile { 'name' : string }
 export type UserRole = { 'admin' : null } |
   { 'user' : null } |
   { 'guest' : null };
 export interface _SERVICE {
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
-  'getAllSubmissions' : ActorMethod<[], Array<ContactFormSubmission>>,
-  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
-  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
-  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
-  'submitContactForm' : ActorMethod<[ContactFormSubmission], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

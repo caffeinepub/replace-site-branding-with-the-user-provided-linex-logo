@@ -7,7 +7,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
-import { useSubmitContactForm } from '@/hooks/useQueries';
 import { services } from '@/content/services';
 
 interface ContactFormData {
@@ -20,25 +19,27 @@ interface ContactFormData {
 
 export default function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<ContactFormData>();
-  const submitMutation = useSubmitContactForm();
 
   const inquiryTopic = watch('inquiryTopic');
 
   const onSubmit = async (data: ContactFormData) => {
     setSubmitStatus('idle');
+    setIsSubmitting(true);
+    
+    // Simulate form submission delay for better UX
+    await new Promise(resolve => setTimeout(resolve, 800));
+    
     try {
-      await submitMutation.mutateAsync({
-        name: data.name,
-        company: data.company || undefined,
-        emailOrPhone: data.emailOrPhone,
-        inquiryTopic: data.inquiryTopic,
-        message: data.message,
-      });
+      // Static frontend - log form data to console for demonstration
+      console.log('Contact form submission:', data);
       setSubmitStatus('success');
       reset();
     } catch (error) {
       setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -158,9 +159,9 @@ export default function ContactForm() {
       <Button
         type="submit"
         className="w-full"
-        disabled={submitMutation.isPending}
+        disabled={isSubmitting}
       >
-        {submitMutation.isPending ? (
+        {isSubmitting ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Sending...

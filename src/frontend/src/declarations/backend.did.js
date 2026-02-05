@@ -13,33 +13,12 @@ export const UserRole = IDL.Variant({
   'user' : IDL.Null,
   'guest' : IDL.Null,
 });
-export const ContactFormSubmission = IDL.Record({
-  'emailOrPhone' : IDL.Text,
-  'name' : IDL.Text,
-  'company' : IDL.Opt(IDL.Text),
-  'message' : IDL.Text,
-  'inquiryTopic' : IDL.Text,
-});
-export const UserProfile = IDL.Record({ 'name' : IDL.Text });
 
 export const idlService = IDL.Service({
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
-  'getAllSubmissions' : IDL.Func(
-      [],
-      [IDL.Vec(ContactFormSubmission)],
-      ['query'],
-    ),
-  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
-  'getUserProfile' : IDL.Func(
-      [IDL.Principal],
-      [IDL.Opt(UserProfile)],
-      ['query'],
-    ),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
-  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
-  'submitContactForm' : IDL.Func([ContactFormSubmission], [], []),
 });
 
 export const idlInitArgs = [];
@@ -50,33 +29,12 @@ export const idlFactory = ({ IDL }) => {
     'user' : IDL.Null,
     'guest' : IDL.Null,
   });
-  const ContactFormSubmission = IDL.Record({
-    'emailOrPhone' : IDL.Text,
-    'name' : IDL.Text,
-    'company' : IDL.Opt(IDL.Text),
-    'message' : IDL.Text,
-    'inquiryTopic' : IDL.Text,
-  });
-  const UserProfile = IDL.Record({ 'name' : IDL.Text });
   
   return IDL.Service({
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
-    'getAllSubmissions' : IDL.Func(
-        [],
-        [IDL.Vec(ContactFormSubmission)],
-        ['query'],
-      ),
-    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
-    'getUserProfile' : IDL.Func(
-        [IDL.Principal],
-        [IDL.Opt(UserProfile)],
-        ['query'],
-      ),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
-    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
-    'submitContactForm' : IDL.Func([ContactFormSubmission], [], []),
   });
 };
 

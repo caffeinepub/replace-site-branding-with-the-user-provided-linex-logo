@@ -1,40 +1,120 @@
 {
   "kind": "build_request",
-  "title": "Add typing/backspace word animation to Home hero headline span",
+  "title": "Convert app to frontend-only static site for Netlify (remove IC backend & Internet Identity)",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-44",
-      "text": "Update ONLY the selected Home page hero headline span element (XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/h1[1]/span[1]`, implemented in `frontend/src/pages/HomePage.tsx`) to animate its text with a typing effect that cycles through the words `Planning` → `Precision` → `Performance`, deleting each complete word with a backspace effect before typing the next, and repeating this loop continuously. Do not change the span’s existing font, size, Tailwind classes, or color styling.",
-      "target": "frontend",
+      "id": "REQ-50",
+      "text": "Convert the project into a frontend-only, fully static React/Vite site suitable for Netlify deployment by removing the Internet Computer backend canister code and IC-specific build/deploy configuration from the repo.",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-1",
+          "msg-7",
+          "msg-8"
         ],
         "quotes": [
-          "i want to animate this part as Typing Planning then delete the complete word using backspace then type Precision then again delete the word and finally type Performance and then repeat it again from start",
-          "yes and dont change font or color",
-          "ok do it",
-          "/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/h1[1]/span[1]"
+          "ok make my project to frontend only so i can deploy it to netlify",
+          "yes remove all backend",
+          "make my code static and netlify freindly"
         ]
       },
       "acceptanceCriteria": [
-        "On the Home page, the selected `<span>` in the hero `<h1>` displays a typing animation for the word \"Planning\", then deletes the full word via a backspace effect, then types \"Precision\", deletes it, then types \"Performance\", deletes it, and repeats from \"Planning\" indefinitely.",
-        "Only the selected span’s text content/behavior is changed; its existing Tailwind class(es) (including its color class) remain unchanged and the visual font/color do not change.",
-        "The animation runs smoothly on both desktop and mobile and does not cause layout breakage or clipping in the hero headline."
+        "The `backend/` canister code is removed from the build/deploy flow (no backend canister is required to run or deploy the site).",
+        "IC/dfx-specific deployment configuration is removed or clearly separated so a Netlify deploy can run without installing/using dfx.",
+        "A clean Netlify build completes successfully using only the frontend build output (no backend artifacts required)."
+      ]
+    },
+    {
+      "id": "REQ-51",
+      "text": "Remove Internet Identity and backend actor usage from the runtime by switching the app entrypoint to a new static-only bootstrap file without editing any frontend immutable paths (do not edit `frontend/src/main.tsx` or the immutable II/actor hooks files).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-3",
+          "msg-7"
+        ],
+        "quotes": [
+          "ok make my project to frontend only so i can deploy it to netlify",
+          "yes and dont disturb my front end",
+          "yes remove all backend"
+        ]
+      },
+      "acceptanceCriteria": [
+        "`frontend/index.html` boots the app from a new static-only entry file (e.g., a new `frontend/src/main.static.tsx`), so `frontend/src/main.tsx` remains untouched.",
+        "The running site no longer requires Internet Identity to initialize (no II login flow is needed and no II-related runtime initialization blocks rendering).",
+        "No calls to create/use an IC backend actor are required for any user-visible page to load and function as before (visually unchanged)."
+      ]
+    },
+    {
+      "id": "REQ-52",
+      "text": "Update the Contact form so it does not attempt any backend/canister submission and remains visually unchanged; it must behave as a static frontend-only form (e.g., local-only submission handling with an on-screen success/failure message) while keeping all user-facing text in English.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-7"
+        ],
+        "quotes": [
+          "Should I remove the contact form’s backend submission logic and turn it into a static/non-functional form, or hide/remove the form entirely?",
+          "yes remove all backend"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Submitting the contact form performs no backend/actor/canister request and does not require Internet Identity.",
+        "The Contact page renders the same form UI (fields and layout remain), and submission gives a clear in-app confirmation message in English.",
+        "The app builds and runs on Netlify with the Contact page usable without any backend."
+      ]
+    },
+    {
+      "id": "REQ-53",
+      "text": "Make the deployment Netlify-friendly for an SPA: add Netlify configuration and redirects so all routes (Home/About/Solutions/Contact and any deep links) load correctly on refresh and direct navigation.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-8"
+        ],
+        "quotes": [
+          "ok make my project to frontend only so i can deploy it to netlify",
+          "make my code static and netlify freindly"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A Netlify deploy configuration exists (e.g., `netlify.toml`) with the correct build command and publish directory for the Vite build output.",
+        "An SPA redirect rule exists (e.g., `frontend/public/_redirects` with `/* /index.html 200`) so deep links work on Netlify.",
+        "Refreshing any app route on Netlify returns the app (not a 404)."
+      ]
+    },
+    {
+      "id": "REQ-54",
+      "text": "Keep the visible frontend UI/appearance unchanged while performing the frontend-only conversion (no intentional layout, styling, copy, or content changes except where necessary to remove backend-only functionality).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-3"
+        ],
+        "quotes": [
+          "yes and dont disturb my front end"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Header, footer, Home, About, Solutions, and Contact pages render with the same layout and styling as before the conversion.",
+        "Any user-facing text introduced or modified during the conversion remains in English.",
+        "No new authentication UI or backend-related UI is added."
       ]
     }
   ],
   "constraints": [
-    "Apply changes ONLY to the selected element at XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/h1[1]/span[1]` in `frontend/src/pages/HomePage.tsx`.",
+    "Do not edit frontend immutable paths: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, and any files under `frontend/src/components/ui`.",
     "Keep all user-facing text in English.",
-    "Do not change the selected span’s existing font or color (do not alter its Tailwind classes or introduce styling changes).",
-    "Do not edit any files under `frontend/src/components/ui` or other `frontend.immutablePaths`."
+    "Backend must not be required for the deployed site to run (frontend-only runtime)."
   ],
   "nonGoals": [
-    "Adding email-sending for contact form enquiries (not supported in this build request).",
-    "Changing any other Home page hero copy besides the selected span.",
-    "Redesigning the hero section layout or changing typography/color scheme."
+    "Adding new product features unrelated to the frontend-only conversion (e.g., new pages, new service content, new UI redesign).",
+    "Implementing third-party authentication (only removal/avoidance of Internet Identity is in scope).",
+    "Adding external databases or server-side APIs."
   ],
   "imageRequirements": {
     "required": [],

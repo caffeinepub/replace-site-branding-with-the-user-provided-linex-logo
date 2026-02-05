@@ -1,21 +1,110 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Typing/backspace rotating word animation for Home hero headline span",
+  "title": "Frontend-only static React/Vite conversion for Netlify (remove IC runtime dependencies)",
   "requirements": [
     {
-      "id": "REQ-44",
-      "summary": "Implement a looping typing + backspace animation for the existing Home hero headline <h1> span, cycling Planning → Precision → Performance continuously without changing styling.",
+      "id": "REQ-50",
+      "summary": "Make the app run and build as a standalone static frontend without any required IC backend artifacts.",
       "acceptanceCriteria": [
-        "On the Home page, the selected `<span>` in the hero `<h1>` displays a typing animation for the word \"Planning\", then deletes the full word via a backspace effect, then types \"Precision\", deletes it, then types \"Performance\", deletes it, and repeats from \"Planning\" indefinitely.",
-        "Only the selected span’s text content/behavior is changed; its existing Tailwind class(es) (including its color class) remain unchanged and the visual font/color do not change.",
-        "The animation runs smoothly on both desktop and mobile and does not cause layout breakage or clipping in the hero headline."
+        "The `backend/` canister code is removed from the build/deploy flow (no backend canister is required to run or deploy the site).",
+        "IC/dfx-specific deployment configuration is removed or clearly separated so a Netlify deploy can run without installing/using dfx.",
+        "A clean Netlify build completes successfully using only the frontend build output (no backend artifacts required)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/HomePage.tsx",
+          "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Update only the hero headline span currently rendering \"Excellence\" to instead render a state-driven animated string. Implement in-file typing/backspace logic (e.g., React state + effect with timed updates) that cycles through [\"Planning\",\"Precision\",\"Performance\"], types each word character-by-character, deletes the full word character-by-character, and loops indefinitely. Keep the span’s existing Tailwind classes unchanged and avoid any styling changes elsewhere in the page."
+          "description": "Switch the bootstrapped module script away from the IC/Internet-Identity-based entry to the new static-only entry so the built site no longer depends on IC runtime initialization."
+        },
+        {
+          "path": "frontend/src/main.static.tsx",
+          "operation": "create",
+          "description": "Add a static-only React bootstrap entry that mounts the app using only frontend-safe providers (e.g., React Query + App) and does not import/use Internet Identity or actor wiring."
+        },
+        {
+          "path": "frontend/src/components/contact/ContactForm.tsx",
+          "operation": "modify",
+          "description": "Remove the runtime dependency on backend actor submission hooks from the Contact form so the production bundle can build/run without backend artifacts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-51",
+      "summary": "Remove Internet Identity and actor initialization from runtime by booting the app from a new static-only entry file (without touching immutable files).",
+      "acceptanceCriteria": [
+        "`frontend/index.html` boots the app from a new static-only entry file (e.g., a new `frontend/src/main.static.tsx`), so `frontend/src/main.tsx` remains untouched.",
+        "The running site no longer requires Internet Identity to initialize (no II login flow is needed and no II-related runtime initialization blocks rendering).",
+        "No calls to create/use an IC backend actor are required for any user-visible page to load and function as before (visually unchanged)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update the entry script reference from `frontend/src/main.tsx` to `frontend/src/main.static.tsx` while keeping the rest of the document (meta tags, icons, root node) unchanged."
+        },
+        {
+          "path": "frontend/src/main.static.tsx",
+          "operation": "create",
+          "description": "Implement a static-only app bootstrap that renders the existing `App` with the same non-auth providers needed for the UI, and does not import `InternetIdentityProvider`, `useInternetIdentity`, `useActor`, or any IC-specific config."
+        }
+      ]
+    },
+    {
+      "id": "REQ-52",
+      "summary": "Convert the Contact form submission to a frontend-only static behavior with in-app success/failure messaging and no backend calls, keeping UI unchanged and English copy.",
+      "acceptanceCriteria": [
+        "Submitting the contact form performs no backend/actor/canister request and does not require Internet Identity.",
+        "The Contact page renders the same form UI (fields and layout remain), and submission gives a clear in-app confirmation message in English.",
+        "The app builds and runs on Netlify with the Contact page usable without any backend."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/contact/ContactForm.tsx",
+          "operation": "modify",
+          "description": "Replace `useSubmitContactForm` mutation usage with local-only submission handling (client-side only), preserving existing form fields, layout, and existing English success/error alert text; maintain a visually equivalent loading/disabled state for the submit button without making any actor/canister requests."
+        }
+      ]
+    },
+    {
+      "id": "REQ-53",
+      "summary": "Add Netlify SPA deployment configuration (build/publish + route redirects) so deep links refresh correctly.",
+      "acceptanceCriteria": [
+        "A Netlify deploy configuration exists (e.g., `netlify.toml`) with the correct build command and publish directory for the Vite build output.",
+        "An SPA redirect rule exists (e.g., `frontend/public/_redirects` with `/* /index.html 200`) so deep links work on Netlify.",
+        "Refreshing any app route on Netlify returns the app (not a 404)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/netlify.toml",
+          "operation": "create",
+          "description": "Add a Netlify configuration suitable for deploying this Vite SPA from the `frontend/` base directory, defining the correct build command and publish directory for the static output."
+        },
+        {
+          "path": "frontend/public/_redirects",
+          "operation": "create",
+          "description": "Add an SPA redirect rule so any route (including deep links like /about, /solutions, /contact) serves the app entry document on refresh/direct navigation."
+        }
+      ]
+    },
+    {
+      "id": "REQ-54",
+      "summary": "Preserve the visible UI/appearance during the frontend-only conversion, changing only what is necessary to remove backend-only behavior.",
+      "acceptanceCriteria": [
+        "Header, footer, Home, About, Solutions, and Contact pages render with the same layout and styling as before the conversion.",
+        "Any user-facing text introduced or modified during the conversion remains in English.",
+        "No new authentication UI or backend-related UI is added."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/main.static.tsx",
+          "operation": "create",
+          "description": "Ensure the static-only bootstrap maintains the same top-level rendering behavior (same App tree and global styles import pattern) so the site’s appearance remains unchanged while removing Internet Identity initialization."
+        },
+        {
+          "path": "frontend/src/components/contact/ContactForm.tsx",
+          "operation": "modify",
+          "description": "Keep the Contact form’s existing shadcn/ui-based layout and styling intact while removing backend submission logic; ensure any new/modified UI messaging remains in English and no authentication-related UI is introduced. Verify the component's usage instructions before implementing."
         }
       ]
     }

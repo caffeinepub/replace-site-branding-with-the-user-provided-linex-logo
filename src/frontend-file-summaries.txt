@@ -10,15 +10,18 @@
   "frontend/src/components/services/ServiceCard.tsx": "Interactive card component displaying service summary with icon, title, description, and hover effects that opens detail panel on click.",
   "frontend/src/components/services/ServiceDetailPanel.tsx": "Dialog component showing detailed service information including overview, features, applications, and contact CTA.",
   "frontend/src/components/services/ServicesFilterBar.tsx": "Filter bar component with search input and category dropdown for filtering services in real-time.",
-  "frontend/src/components/contact/ContactForm.tsx": "Contact form with validation, topic selection, and backend submission using React Hook Form and mutation hook; email/phone input placeholder updated to \"Your Email address or Mobile number\".",
+  "frontend/src/components/contact/ContactForm.tsx": "Contact form component converted to frontend-only with client-side submission handling (no backend calls), preserving all existing UI, fields, layout, and English success/error messaging.",
   "frontend/src/components/motion/RevealOnScroll.tsx": "Intersection Observer-based component that animates elements on scroll while respecting reduced-motion preferences.",
   "frontend/src/content/services.ts": "Service data definitions with updated icon mapping - Servo Systems now uses Settings (gear) icon and Energy Management uses Zap (lightning) icon, while all other service icons remain unchanged.",
-  "frontend/src/hooks/useQueries.ts": "React Query mutation hook for submitting contact form data to the backend actor.",
+  "frontend/src/hooks/useQueries.ts": "Empty module file kept for compatibility after frontend-only conversion; all backend-dependent React Query hooks have been removed.",
   "frontend/src/hooks/useReducedMotion.ts": "Hook that detects user's prefers-reduced-motion setting for accessible animations.",
   "frontend/src/hooks/useSeo.ts": "Hook for dynamically setting page title and meta tags (description, Open Graph, Twitter) for SEO.",
   "frontend/src/index.css": "Global styles with industrial-themed OKLCH color system, focus states, utility classes, and hero slideshow styles featuring single-slide viewport, smooth transitions, simple circular navigation dots (light-gray inactive, darker filled active) positioned below the slideshow with generous spacing (gap-6), larger invisible hit areas for accessibility, and full reduced-motion support.",
-  "frontend/index.html": "HTML entry point with document title and meta tags updated to use \"LINEX AUTOMATION\" in all caps for consistent branding.",
+  "frontend/index.html": "HTML entry point updated to bootstrap the app from the new static-only entry file (main.static.tsx) instead of the IC-dependent main.tsx.",
   "frontend/tailwind.config.js": "Tailwind configuration extending theme with industrial color palette, custom industrial-accent color, and Inter font family.",
   "frontend/src/config/branding.ts": "Centralized branding configuration with company name updated to \"LINEX AUTOMATION\" in all caps and logo alt text updated accordingly.",
-  "frontend/src/components/home/HeroCarousel.tsx": "Creative single-slide-at-a-time slideshow component with autoplay, drag/swipe gesture support, seamless infinite looping through 7 user-provided images (with the previously replaced 5th-position slide removed and new image-14 appended as the final slide), and bottom navigation with simple circular dot indicators positioned below the slideshow."
+  "frontend/src/components/home/HeroCarousel.tsx": "Creative single-slide-at-a-time slideshow component with autoplay, drag/swipe gesture support, seamless infinite looping through 7 user-provided images (with the last slide now showing the EPLAN electrical drawings software image), and bottom navigation with simple circular dot indicators positioned below the slideshow.",
+  "frontend/src/main.static.tsx": "Static-only React bootstrap entry that mounts the app with QueryClientProvider only, without Internet Identity or actor initialization.",
+  "netlify.toml": "Netlify deployment configuration specifying the frontend build command, publish directory, and SPA redirect rule for proper routing.",
+  "frontend/public/_redirects": "Netlify SPA redirect rule ensuring all routes serve the app entry document for deep link support."
 }

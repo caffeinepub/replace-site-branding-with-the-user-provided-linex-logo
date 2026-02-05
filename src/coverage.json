@@ -1,34 +1,97 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-05T21:01:59.175Z",
+  "generatedAt": "2026-02-05T21:48:16.127Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 5,
+    "implemented": 5,
     "items": [
       {
-        "id": "REQ-44",
-        "summary": "Update ONLY the selected Home page hero headline span element (XPath `/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[2]/div[1]/div[1]/div[1]/h1[1]/span[1]`, implemented in `frontend/src/pages/HomePage.tsx`) to animate its text with a typing effect that cycles through the words `Planning` → `Precision` → `Performance`, deleting each complete word with a backspace effect before typing the next, and repeating this loop continuously. Do not change the span’s existing font, size, Tailwind classes, or color styling.",
+        "id": "REQ-50",
+        "summary": "Convert the project into a frontend-only, fully static React/Vite site suitable for Netlify deployment by removing the Internet Computer backend canister code and IC-specific build/deploy configuration from the repo.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/HomePage.tsx"
+          "frontend/index.html",
+          "frontend/src/main.static.tsx",
+          "frontend/src/components/contact/ContactForm.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/HomePage.tsx"
+          "frontend/index.html",
+          "frontend/src/main.static.tsx",
+          "frontend/src/components/contact/ContactForm.tsx"
+        ]
+      },
+      {
+        "id": "REQ-51",
+        "summary": "Remove Internet Identity and backend actor usage from the runtime by switching the app entrypoint to a new static-only bootstrap file without editing any frontend immutable paths (do not edit `frontend/src/main.tsx` or the immutable II/actor hooks files).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/index.html",
+          "frontend/src/main.static.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/index.html",
+          "frontend/src/main.static.tsx"
+        ]
+      },
+      {
+        "id": "REQ-52",
+        "summary": "Update the Contact form so it does not attempt any backend/canister submission and remains visually unchanged; it must behave as a static frontend-only form (e.g., local-only submission handling with an on-screen success/failure message) while keeping all user-facing text in English.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/contact/ContactForm.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/contact/ContactForm.tsx"
+        ]
+      },
+      {
+        "id": "REQ-53",
+        "summary": "Make the deployment Netlify-friendly for an SPA: add Netlify configuration and redirects so all routes (Home/About/Solutions/Contact and any deep links) load correctly on refresh and direct navigation.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/netlify.toml",
+          "frontend/public/_redirects"
+        ],
+        "matchedFiles": [
+          "frontend/public/_redirects"
+        ]
+      },
+      {
+        "id": "REQ-54",
+        "summary": "Keep the visible frontend UI/appearance unchanged while performing the frontend-only conversion (no intentional layout, styling, copy, or content changes except where necessary to remove backend-only functionality).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/main.static.tsx",
+          "frontend/src/components/contact/ContactForm.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/main.static.tsx",
+          "frontend/src/components/contact/ContactForm.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/pages/HomePage.tsx",
+    "frontend/index.html",
+    "frontend/public/_redirects",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/contact/ContactForm.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/main.static.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

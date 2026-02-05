@@ -1,18 +1,5 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useActor } from './useActor';
-import type { ContactFormSubmission } from '../backend';
+// This file is kept for compatibility but no longer contains backend queries
+// since the application has been converted to a static frontend-only build.
+// All backend-dependent hooks have been removed.
 
-export function useSubmitContactForm() {
-  const { actor } = useActor();
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async (submission: ContactFormSubmission) => {
-      if (!actor) throw new Error('Actor not available');
-      return actor.submitContactForm(submission);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['submissions'] });
-    },
-  });
-}
+export {};

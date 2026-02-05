@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
-// Reordered slides with 5th position removed and new image-14 appended at end
+// Reordered slides with last slide updated to EPLAN electrical drawings image
 const carouselSlides = [
   {
     src: '/assets/image-2.png',
@@ -28,8 +28,8 @@ const carouselSlides = [
     alt: 'Industrial equipment',
   },
   {
-    src: '/assets/generated/hero-slide-image-14.dim_1600x700.png',
-    alt: 'Industrial control engineering',
+    src: '/assets/generated/hero-slide-eplan.dim_1600x700.png',
+    alt: 'EPLAN electrical drawings software',
   },
 ];
 
