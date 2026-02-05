@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 9,
+  "summary": "Initial full-stack Internet Computer (Motoko + React) app scaffolded with authorization utilities, Internet Identity authentication hooks, multi-page marketing site (Home/Solutions/About/Contact), services browsing UI, contact form, and build/deploy templates; includes generated brand/hero image assets.",
+  "architectural_notes": [
+    "Frontend uses React + Vite with Tailwind styling and a shared SiteLayout (header/footer).",
+    "Authentication flow relies on Internet Identity; frontend constructs authenticated canister actors via hooks.",
+    "Backend is a Motoko canister with reusable authorization/access-control modules.",
+    "Build/deploy scaffolding includes dockerized and ICP CLI-oriented templates plus image resize/prune scripts."
+  ],
+  "known_issues": [
+    "Reported issue: user-provided logo/branding was not updated or reflected in the deployed site."
+  ],
+  "isFixRequest": true,
+  "imageRequirements": "## Required Images\n- Favicon derived from the user-provided logo (favicon.dim_32x32.png)\n- Apple touch icon derived from the user-provided logo (apple-touch-icon.dim_180x180.png)\n- Social preview image derived from the user-provided logo on a clean background (og-image.dim_1200x630.png)\n\n## Edit Images\n- Replace the existing generated logo with the user-provided logo styling (linex-logo.dim_512x512.png > linex-logo-user.dim_512x512.png)",
+  "generatedImages": [
+    {
+      "filename": "frontend/public/assets/generated/hero-automation.dim_1600x700.png",
+      "description": "Generated hero/automation banner image asset",
+      "targetWidth": 1600,
+      "targetHeight": 700
+    },
+    {
+      "filename": "frontend/public/assets/generated/linex-logo.dim_512x512.png",
+      "description": "Generated logo image asset",
+      "targetWidth": 512,
+      "targetHeight": 512
+    },
+    {
+      "filename": "frontend/public/assets/generated/services-icons-sprite.dim_1024x1024.png",
+      "description": "Generated services icons sprite sheet",
+      "targetWidth": 1024,
+      "targetHeight": 1024
+    }
+  ],
+  "existing_features": [
+    {
+      "id": "IF-1",
+      "title": "Motoko backend canister scaffold with authorization mixins",
+      "synonyms": [
+        "backend scaffold",
+        "Motoko canister",
+        "authorization module"
+      ],
+      "description": "Backend canister project includes authorization utilities (MixinAuthorization, access-control) and main canister entrypoint wiring.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-2",
+      "title": "Internet Identity authentication integration (frontend hooks)",
+      "synonyms": [
+        "II auth",
+        "Internet Identity",
+        "auth hooks"
+      ],
+      "description": "Frontend includes hooks/utilities for Internet Identity login and authenticated actor creation (useInternetIdentity, useActor) plus query helpers.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-3",
+      "title": "Multi-page React site with shared layout (header/footer)",
+      "synonyms": [
+        "SiteLayout",
+        "routing/pages"
+      ],
+      "description": "React app includes SiteLayout with SiteHeader/SiteFooter and pages for Home, Solutions, About, and Contact.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-4",
+      "title": "Services browsing UI with cards, filters, and detail panel",
+      "synonyms": [
+        "Services",
+        "ServiceCard",
+        "ServiceDetailPanel",
+        "ServicesFilterBar"
+      ],
+      "description": "Services content and UI components implemented to display service offerings with filtering and detail view panel.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-5",
+      "title": "Contact page with contact form component",
+      "synonyms": [
+        "ContactForm"
+      ],
+      "description": "Contact page includes a dedicated ContactForm component for user inquiries.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-6",
+      "title": "SEO and UX utility hooks",
+      "synonyms": [
+        "useSeo",
+        "useReducedMotion",
+        "RevealOnScroll"
+      ],
+      "description": "Includes SEO helper hook and motion/UX utilities such as reduced-motion detection and scroll reveal component.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-7",
+      "title": "Build/deploy templates for IC project (Dockerfile, scripts, canister configs)",
+      "synonyms": [
+        "build template",
+        "deploy scripts",
+        "icp.yaml"
+      ],
+      "description": "Repository includes build-template assets (Dockerfile, deploy.sh, icp.yaml, workspace configs) and scripts for image processing (resize/prune).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-8",
+      "title": "Generated frontend image assets (hero, logo, service icons sprite)",
+      "synonyms": [
+        "generated images",
+        "assets"
+      ],
+      "description": "Generated PNG assets included under frontend/public/assets/generated for hero automation image, logo, and services icons sprite.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "feature-update-site-branding-to-use-the-user-uploaded-logo-image-across-the-app-including-replacing-any-existing-references-to-assets-generated-linex-logo-dim-512x512-png-in-the-header-and-adding-the-logo-to-the-footer-branding-area",
+      "title": "Update site branding to use the user-uploaded logo image across the app, including replacing any existing references to `/assets/generated/linex-logo.dim_512x512.png` in the header and adding the logo to the footer branding area.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-standard-brand-seo-assets-favicon-and-social-preview-image-derived-from-the-user-provided-logo-and-wire-them-into-frontend-index-html-via-link-rel-icon-apple-touch-icon-and-meta-tags-for-og-image-and-twitter-image",
+      "title": "Add standard brand/SEO assets (favicon and social preview image) derived from the user-provided logo, and wire them into `frontend/index.html` via `link rel=\"icon\"`, `apple-touch-icon`, and `meta` tags for `og:image` and `twitter:image`.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-user-facing-alt-text-and-seo-titles-descriptions-remain-in-english-after-the-logo-update",
+      "title": "Ensure all user-facing alt text and SEO titles/descriptions remain in English after the logo update.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-user-provided-logo-image-asset-exists-in-the-deployed-frontend-static-assets-and-is-loadable-at-the-path-referenced-by-the-ui-assets-generated-linex-logo-user-dim-512x512-png",
+      "title": "Ensure the user-provided logo image asset exists in the deployed frontend static assets and is loadable at the path referenced by the UI (`/assets/generated/linex-logo-user.dim_512x512.png`).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-and-correct-site-wide-logo-usage-so-the-header-and-footer-branding-always-render-the-user-provided-logo-and-do-not-fall-back-to-the-old-generated-logo",
+      "title": "Verify and correct site-wide logo usage so the header and footer branding always render the user-provided logo (and do not fall back to the old generated logo).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-brand-seo-icon-assets-referenced-in-frontend-index-html-exist-and-load-correctly-from-the-deployed-site",
+      "title": "Ensure all brand/SEO icon assets referenced in `frontend/index.html` exist and load correctly from the deployed site.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Replace/update site branding to use the user-provided logo asset across the app (header/footer/SEO as applicable)",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Replace site branding with the user-provided Linex logo",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

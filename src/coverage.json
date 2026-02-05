@@ -1,0 +1,74 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-05T15:25:57.310Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 3,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-4",
+        "summary": "Ensure the user-provided logo image asset exists in the deployed frontend static assets and is loadable at the path referenced by the UI (`/assets/generated/linex-logo-user.dim_512x512.png`).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/linex-logo-user.dim_512x512.png"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/linex-logo-user.dim_512x512.png"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Verify and correct site-wide logo usage so the header and footer branding always render the user-provided logo (and do not fall back to the old generated logo).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/config/branding.ts",
+          "frontend/src/components/layout/SiteHeader.tsx",
+          "frontend/src/components/layout/SiteFooter.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/config/branding.ts",
+          "frontend/src/components/layout/SiteHeader.tsx",
+          "frontend/src/components/layout/SiteFooter.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Ensure all brand/SEO icon assets referenced in `frontend/index.html` exist and load correctly from the deployed site.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/favicon.dim_32x32.png",
+          "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+          "frontend/public/assets/generated/og-image.dim_1200x630.png",
+          "frontend/index.html"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/favicon.dim_32x32.png",
+          "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+          "frontend/public/assets/generated/og-image.dim_1200x630.png"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/apple-touch-icon.dim_180x180.png",
+    "frontend/public/assets/generated/favicon.dim_32x32.png",
+    "frontend/public/assets/generated/linex-logo-user.dim_512x512.png",
+    "frontend/public/assets/generated/og-image.dim_1200x630.png",
+    "frontend/src/components/layout/SiteFooter.tsx",
+    "frontend/src/components/layout/SiteHeader.tsx",
+    "frontend/src/config/branding.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

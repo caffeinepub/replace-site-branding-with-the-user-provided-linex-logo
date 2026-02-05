@@ -1,0 +1,56 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-05T15:25:57.307Z",
+  "summary": "Header and footer were updated to use a centralized branding config that points to the user-provided logo path. However, the diff summary does not show the required static image assets being added under frontend/public, nor does it provide concrete evidence that frontend/index.html was updated and that the favicon/apple-touch/OG assets exist and load.",
+  "missing_requirements": [
+    {
+      "id": "REQ-4",
+      "requirement": "Ensure the user-provided logo image asset exists in the deployed frontend static assets and is loadable at `/assets/generated/linex-logo-user.dim_512x512.png`.",
+      "reason": "The diff summary shows code referencing `/assets/generated/linex-logo-user.dim_512x512.png`, but does not show `frontend/public/assets/generated/linex-logo-user.dim_512x512.png` being added/modified, so asset existence/loadability cannot be verified from the provided changes.",
+      "evidence": [
+        "frontend/src/config/branding.ts",
+        "frontend/src/components/layout/SiteHeader.tsx",
+        "frontend/src/components/layout/SiteFooter.tsx"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "No remaining references to `/assets/generated/linex-logo.dim_512x512.png` are used for the header/footer branding image in the codebase.",
+      "reason": "While SiteHeader and SiteFooter now use the new path via BRANDING config, the diff summary does not provide a repo-wide search or evidence that no other header/footer branding references to the old logo remain elsewhere.",
+      "evidence": [
+        "frontend/src/components/layout/SiteHeader.tsx",
+        "frontend/src/components/layout/SiteFooter.tsx",
+        "frontend/src/config/branding.ts"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Ensure all brand/SEO icon assets referenced in `frontend/index.html` exist and load correctly from the deployed site (favicon, apple touch icon, og image).",
+      "reason": "The diff summary mentions `frontend/index.html` is wired to new brand assets only in a text summary, but does not include the actual `frontend/index.html` diff content or any added/modified files under `frontend/public/assets/generated/` for the favicon/apple-touch/og image assets, so existence and correct references cannot be confirmed.",
+      "evidence": [
+        "frontend/src/config/branding.ts",
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Introduced a centralized branding configuration module (`frontend/src/config/branding.ts`) as a single source of truth for logo and SEO assets.",
+      "reason": "The BuildRequest requires correcting logo/icon usage and ensuring assets exist, but does not request adding a new branding configuration layer/module.",
+      "evidence": [
+        "frontend/src/config/branding.ts",
+        "frontend/src/components/layout/SiteHeader.tsx",
+        "frontend/src/components/layout/SiteFooter.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.66,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/layout/SiteFooter.tsx",
+    "frontend/src/components/layout/SiteHeader.tsx",
+    "frontend/src/config/branding.ts",
+    "project_state.json"
+  ]
+}

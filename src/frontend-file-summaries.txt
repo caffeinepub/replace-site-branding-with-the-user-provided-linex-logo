@@ -1,0 +1,23 @@
+{
+  "frontend/src/App.tsx": "Main application component that sets up TanStack Router with routes for Home, About, Solutions, and Contact pages, all wrapped in a shared layout.",
+  "frontend/src/components/layout/SiteLayout.tsx": "Layout wrapper component that provides consistent header, main content area with Outlet for route rendering, and footer across all pages.",
+  "frontend/src/components/layout/SiteHeader.tsx": "Responsive header component with the user-provided LINEX logo imported from centralized branding config, desktop navigation menu, and mobile sheet menu with active route highlighting.",
+  "frontend/src/components/layout/SiteFooter.tsx": "Footer component with the user-provided LINEX logo imported from centralized branding config, company information, quick links, contact section, and attribution with caffeine.ai link.",
+  "frontend/src/pages/HomePage.tsx": "Home page featuring hero section with CTA buttons, services overview grid with cards, and call-to-action section encouraging contact.",
+  "frontend/src/pages/AboutPage.tsx": "About page describing Linex Automations' expertise, capabilities across automation technologies, and commitment to excellence.",
+  "frontend/src/pages/SolutionsPage.tsx": "Solutions page with filterable/searchable services grid and detail panel dialog for viewing comprehensive service information.",
+  "frontend/src/pages/ContactPage.tsx": "Contact page with contact information display and integrated contact form for inquiries.",
+  "frontend/src/components/services/ServiceCard.tsx": "Interactive card component displaying service summary with icon, title, description, and hover effects that opens detail panel on click.",
+  "frontend/src/components/services/ServiceDetailPanel.tsx": "Dialog component showing detailed service information including overview, features, applications, and contact CTA.",
+  "frontend/src/components/services/ServicesFilterBar.tsx": "Filter bar component with search input and category dropdown for filtering services in real-time.",
+  "frontend/src/components/contact/ContactForm.tsx": "Contact form with validation, topic selection, and backend submission using React Hook Form and mutation hook.",
+  "frontend/src/components/motion/RevealOnScroll.tsx": "Intersection Observer-based component that animates elements on scroll while respecting reduced-motion preferences.",
+  "frontend/src/content/services.ts": "Service data definitions for all seven offerings (PLC, HMI, SCADA, Servos, VFD, Control Panels, Energy Management) with detailed descriptions, features, and applications.",
+  "frontend/src/hooks/useQueries.ts": "React Query mutation hook for submitting contact form data to the backend actor.",
+  "frontend/src/hooks/useReducedMotion.ts": "Hook that detects user's prefers-reduced-motion setting for accessible animations.",
+  "frontend/src/hooks/useSeo.ts": "Hook for dynamically setting page title and meta tags (description, Open Graph, Twitter) for SEO.",
+  "frontend/src/index.css": "Global styles with industrial-themed OKLCH color system (charcoal neutrals with amber accent), focus states, and utility classes.",
+  "frontend/index.html": "HTML entry point with SEO meta tags, favicon, apple-touch-icon, Open Graph, and Twitter card metadata wired to the new brand assets.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending theme with industrial color palette, custom industrial-accent color, and Inter font family.",
+  "frontend/src/config/branding.ts": "Centralized branding configuration providing single source of truth for all brand assets (logo, favicon, icons) and company metadata to prevent logo path regressions."
+}
