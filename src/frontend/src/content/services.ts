@@ -1,4 +1,4 @@
-import { Cpu, Monitor, Network, Zap, Gauge, Box, Settings } from 'lucide-react';
+import { Cpu, Monitor, Network, Zap, Gauge, Box, Settings, Factory } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export interface Service {
@@ -173,5 +173,28 @@ export const services: Service[] = [
     ],
     category: 'energy',
     icon: Zap,
+  },
+  {
+    id: 'industry-4-0',
+    title: 'Industry 4.0',
+    description: 'Smart manufacturing solutions integrating IoT, AI, and data analytics for digital transformation.',
+    detailedDescription:
+      'Our Industry 4.0 solutions enable digital transformation of manufacturing operations through integration of IoT sensors, cloud connectivity, artificial intelligence, and advanced analytics. We help you build smart factories that are connected, intelligent, and adaptive.',
+    features: [
+      'IoT sensor integration and connectivity',
+      'Real-time data analytics and insights',
+      'Predictive maintenance systems',
+      'Digital twin implementation',
+      'Cloud-based monitoring and control',
+    ],
+    applications: [
+      'Smart factory implementation',
+      'Predictive maintenance programs',
+      'Supply chain optimization',
+      'Quality control automation',
+      'Production optimization',
+    ],
+    category: 'monitoring',
+    icon: Factory,
   },
 ];

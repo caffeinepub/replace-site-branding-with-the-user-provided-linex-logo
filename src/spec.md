@@ -1,11 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Replace the two logo images shown in the HomePage “Brands We Deal In” (section 3) banner with the provided external image URLs.
+**Goal:** Rename the specified heading text to “About Us” and ensure the “Industry 4.0” solution appears on the Solutions page.
 
 **Planned changes:**
-- Update the first logo `<img>` in `frontend/src/components/home/BrandsBanner.tsx` to use `src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg"`.
-- Update the second logo `<img>` in `frontend/src/components/home/BrandsBanner.tsx` to use `src="https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png"`.
-- Keep the banner’s existing layout and styling (including sizing, object-contain, and grayscale hover effect) unchanged and do not modify any other images/logos.
+- Update only the targeted heading span (specified by the provided XPath) to render the exact text: “About Us”.
+- Add an “Industry 4.0” solution card to `/solutions`, matching the existing Solutions card design and using the same content as the Home page “Our Solutions” Industry 4.0 item.
+- Ensure the “Industry 4.0” card appears as the last item in the Solutions grid under default filters.
 
-**User-visible outcome:** The “Brands We Deal In” banner displays the Siemens logo in the first slot and the Schneider Electric logo in the second slot, loaded from the specified URLs, with all other page visuals unchanged.
+**User-visible outcome:** The selected page heading shows “About Us”, and the Solutions page includes an “Industry 4.0” card at the end of the list that matches the Home page version.

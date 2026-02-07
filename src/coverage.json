@@ -1,24 +1,35 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-07T18:17:02.964Z",
+  "generatedAt": "2026-02-07T20:12:38.948Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
+    "total": 2,
     "implemented": 1,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Update the two logo <img> elements in the HomePage section 3 \"Brands We Deal In\" banner (rendered by frontend/src/components/home/BrandsBanner.tsx) so that:\n- Element 1 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[1]/img[1]) uses src=\"https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg\"\n- Element 2 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[2]/img[1]) uses src=\"https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png\"\nApply changes only to these two selected logo elements.",
+        "summary": "Update the text content of the selected element at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[1]/div[1]/div[1]/h1[1]/span[1] to exactly: \"About Us\".",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/AboutPage.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Add an \"Industry 4.0\" solution card to the Solutions page, using the same design/layout as existing Solution cards and using the same title/description/icon/content as the Home page \"Our Solutions\" Industry 4.0 element; ensure it appears at the end of the Solutions grid when viewing /solutions with default filters.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/home/BrandsBanner.tsx"
+          "frontend/src/content/services.ts",
+          "frontend/src/pages/HomePage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/home/BrandsBanner.tsx"
+          "frontend/src/content/services.ts",
+          "frontend/src/pages/HomePage.tsx"
         ]
       }
     ]
@@ -28,7 +39,8 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/home/BrandsBanner.tsx",
+    "frontend/src/content/services.ts",
+    "frontend/src/pages/HomePage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

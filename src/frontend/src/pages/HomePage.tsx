@@ -7,6 +7,7 @@ import { services } from '@/content/services';
 import { useSeo } from '@/hooks/useSeo';
 import RevealOnScroll from '@/components/motion/RevealOnScroll';
 import HeroCarousel from '@/components/home/HeroCarousel';
+import OurExpertiesBanner from '@/components/home/OurExpertiesBanner';
 import BrandsBanner from '@/components/home/BrandsBanner';
 
 export default function HomePage() {
@@ -125,6 +126,9 @@ export default function HomePage() {
           </RevealOnScroll>
         </div>
       </section>
+
+      {/* Our Experties Banner */}
+      <OurExpertiesBanner />
 
       {/* Brands Banner */}
       <BrandsBanner />

@@ -1,36 +1,63 @@
 {
   "kind": "build_request",
-  "title": "Replace the two Brands Banner logo images with provided URLs",
+  "title": "Rename selected heading text to “About Us” and add Industry 4.0 to Solutions page",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Update the two logo <img> elements in the HomePage section 3 \"Brands We Deal In\" banner (rendered by frontend/src/components/home/BrandsBanner.tsx) so that:\n- Element 1 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[1]/img[1]) uses src=\"https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg\"\n- Element 2 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[2]/img[1]) uses src=\"https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png\"\nApply changes only to these two selected logo elements.",
+      "text": "Update the text content of the selected element at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[1]/div[1]/div[1]/h1[1]/span[1] to exactly: \"About Us\".",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-12",
+          "msg-13"
         ],
         "quotes": [
-          "replace the logo photos with the images link https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg and https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png",
-          "element 1 : https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg",
-          "element 2 : https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png"
+          "Also rename this selected element as \"About Us\"",
+          "rename it to \"About Us\" and also add the same element Industry 4.0 in Our solutions to Solution Page at Last"
         ]
       },
       "acceptanceCriteria": [
-        "The first brand logo image in the banner loads from https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg.",
-        "The second brand logo image in the banner loads from https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png.",
-        "No other images/logos on the page are changed.",
-        "The banner layout and existing styling (size, object-contain, grayscale hover effect) remain intact."
+        "The selected heading span renders the exact text \"About Us\" (case and spacing match).",
+        "No other headings or page text are changed as part of this rename."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add an \"Industry 4.0\" solution card to the Solutions page, using the same design/layout as existing Solution cards and using the same title/description/icon/content as the Home page \"Our Solutions\" Industry 4.0 element; ensure it appears at the end of the Solutions grid when viewing /solutions with default filters.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-4",
+          "msg-6",
+          "msg-8",
+          "msg-13"
+        ],
+        "quotes": [
+          "you did not add Industry 4.0 Card in Solutions Page",
+          "ollow the same design/layout as your existing Solution card",
+          "just at end",
+          "same as in home page our Solutions",
+          "rename it to \"About Us\" and also add the same element Industry 4.0 in Our solutions to Solution Page at Last"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Navigating to /solutions shows an \"Industry 4.0\" card in the solutions grid.",
+        "The Industry 4.0 card uses the same card component styling and interactions as the other Solution cards on the Solutions page.",
+        "The Industry 4.0 card content (title/description/detailed content/feature list/applications/category/icon) matches the Industry 4.0 item used on the Home page \"Our Solutions\" section.",
+        "With default filters (search empty, category = all), the Industry 4.0 card appears as the last item in the grid."
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT."
+    "Apply the rename ONLY to the selected element specified by the provided XPath.",
+    "Do not edit files under frontend/src/components/ui (read-only).",
+    "Backend must remain single-actor; do not introduce additional backend services."
   ],
   "nonGoals": [
-    "Do not add new brand logos or change the number/order of logos beyond updating the two specified images.",
-    "Do not implement backend changes (no Motoko updates required)."
+    "Do not add new authentication methods or third-party integrations.",
+    "Do not redesign the Solutions page layout beyond adding the missing Industry 4.0 card."
   ],
   "imageRequirements": {
     "required": [],

@@ -1,22 +1,42 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update BrandsBanner logo image sources to provided URLs",
+  "title": "Update About heading text and add Industry 4.0 card to Solutions page",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Replace the two brand logo image sources in the HomePage “Brands We Deal In” banner with the provided Siemens and Schneider Electric URLs without affecting any other images or styling.",
+      "summary": "Rename the selected About page heading span to exactly “About Us” without changing any other text.",
       "acceptanceCriteria": [
-        "The first brand logo image in the banner loads from https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg.",
-        "The second brand logo image in the banner loads from https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png.",
-        "No other images/logos on the page are changed.",
-        "The banner layout and existing styling (size, object-contain, grayscale hover effect) remain intact."
+        "The selected heading span renders the exact text \"About Us\" (case and spacing match).",
+        "No other headings or page text are changed as part of this rename."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/home/BrandsBanner.tsx",
+          "path": "frontend/src/pages/AboutPage.tsx",
           "operation": "modify",
-          "description": "Update only the two existing logo <img> elements rendered by BrandsBanner by changing their src values to the provided Siemens and Schneider Electric URLs; keep the existing mapping/render structure and all existing classes (size, object-contain, grayscale hover effect) unchanged, and do not modify any other images/logos elsewhere."
+          "description": "Ensure the first <h1> child <span> (the heading span corresponding to the provided XPath) renders exactly \"About Us\", and verify no other page text is altered."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add an Industry 4.0 solution card to the Solutions page using the existing card design and ensure it appears last with default filters, matching the Home page Industry 4.0 content.",
+      "acceptanceCriteria": [
+        "Navigating to /solutions shows an \"Industry 4.0\" card in the solutions grid.",
+        "The Industry 4.0 card uses the same card component styling and interactions as the other Solution cards on the Solutions page.",
+        "The Industry 4.0 card content (title/description/detailed content/feature list/applications/category/icon) matches the Industry 4.0 item used on the Home page \"Our Solutions\" section.",
+        "With default filters (search empty, category = all), the Industry 4.0 card appears as the last item in the grid."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/content/services.ts",
+          "operation": "modify",
+          "description": "Add the Industry 4.0 service definition (matching the Home page \"Our Solutions\" Industry 4.0 item) to the exported services list and place it as the last array item; include its icon import (Factory) so it renders with the same ServiceCard design on /solutions."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Refactor the Home page \"Our Solutions\" section to source Industry 4.0 content from the shared services content (so the Industry 4.0 card content exactly matches between Home and /solutions) while keeping the existing grid/card rendering."
         }
       ]
     }

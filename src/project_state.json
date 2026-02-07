@@ -3,14 +3,16 @@
   "projectStateVersion": 3,
   "summary": "New project",
   "architectural_notes": [],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Industry 4.0 card is missing from the Solutions page."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-update-the-two-logo-img-elements-in-the-homepage-section-3-brands-we-deal-in-banner-rendered-by-frontend-src-components-home-brandsbanner-tsx-so-that-element-1-html-1-body-1-div-1-div-1-main-1-div-1-section-3-div-1-div-1-div-1-img-1-uses-src-https-upload-wikimedia-org-wikipedia-commons-3-3c-siemens-ag-logo-svg-element-2-html-1-body-1-div-1-div-1-main-1-div-1-section-3-div-1-div-1-div-2-img-1-uses-src-https-www-ruralelec-org-wp-content-uploads-2016-04-schneider-electric-logo-jpg-png-apply-changes-only-to-these-two-selected-logo-elements",
-      "title": "Update the two logo <img> elements in the HomePage section 3 \"Brands We Deal In\" banner (rendered by frontend/src/components/home/BrandsBanner.tsx) so that:\n- Element 1 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[1]/img[1]) uses src=\"https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg\"\n- Element 2 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[2]/img[1]) uses src=\"https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png\"\nApply changes only to these two selected logo elements.",
+      "id": "feature-add-an-industry-4-0-solution-card-to-the-solutions-page-using-the-same-design-layout-as-existing-solution-cards-and-using-the-same-title-description-icon-content-as-the-home-page-our-solutions-industry-4-0-element-ensure-it-appears-at-the-end-of-the-solutions-grid-when-viewing-solutions-with-default-filters",
+      "title": "Add an \"Industry 4.0\" solution card to the Solutions page, using the same design/layout as existing Solution cards and using the same title/description/icon/content as the Home page \"Our Solutions\" Industry 4.0 element; ensure it appears at the end of the Solutions grid when viewing /solutions with default filters.",
       "reqIds": [
-        "REQ-1"
+        "REQ-2"
       ],
       "version": 1
     }
@@ -18,12 +20,26 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Replace the two logo images on the banner: Element 1 -> Siemens logo (https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg), Element 2 -> Schneider Electric logo (https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png)",
+      "summary": "Add an Industry 4.0 solution card to the Solutions page, matching the existing Solution card design and using the same content as the Home page 'Our Solutions' Industry 4.0 element; place it at the end.",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Rename the currently selected element to \"About Us\".",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Update the text content of the selected element at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[1]/div[1]/div[1]/div[1]/h1[1]/span[1] to exactly: \"About Us\".",
+      "reqIds": [
+        "REQ-1"
+      ],
       "status": "pending"
     }
   ],
-  "projectName": "Replace the two Brands Banner logo images with provided URLs",
+  "projectName": "Rename selected heading text to “About Us” and add Industry 4.0 to Solutions page",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

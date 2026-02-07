@@ -2,10 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-two-logo-img-elements-in-the-homepage-section-3-brands-we-deal-in-banner-rendered-by-frontend-src-components-home-brandsbanner-tsx-so-that-element-1-html-1-body-1-div-1-div-1-main-1-div-1-section-3-div-1-div-1-div-1-img-1-uses-src-https-upload-wikimedia-org-wikipedia-commons-3-3c-siemens-ag-logo-svg-element-2-html-1-body-1-div-1-div-1-main-1-div-1-section-3-div-1-div-1-div-2-img-1-uses-src-https-www-ruralelec-org-wp-content-uploads-2016-04-schneider-electric-logo-jpg-png-apply-changes-only-to-these-two-selected-logo-elements",
-      "featureTitle": "Update the two logo <img> elements in the HomePage section 3 \"Brands We Deal In\" banner (rendered by frontend/src/components/home/BrandsBanner.tsx) so that:\n- Element 1 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[1]/img[1]) uses src=\"https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg\"\n- Element 2 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[2]/img[1]) uses src=\"https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png\"\nApply changes only to these two selected logo elements.",
+      "featureId": "feature-add-an-industry-4-0-solution-card-to-the-solutions-page-using-the-same-design-layout-as-existing-solution-cards-and-using-the-same-title-description-icon-content-as-the-home-page-our-solutions-industry-4-0-element-ensure-it-appears-at-the-end-of-the-solutions-grid-when-viewing-solutions-with-default-filters",
+      "featureTitle": "Add an \"Industry 4.0\" solution card to the Solutions page, using the same design/layout as existing Solution cards and using the same title/description/icon/content as the Home page \"Our Solutions\" Industry 4.0 element; ensure it appears at the end of the Solutions grid when viewing /solutions with default filters.",
       "files": [
-        "frontend/src/components/home/BrandsBanner.tsx"
+        "frontend/src/content/services.ts",
+        "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -16,7 +17,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-1"
+        "REQ-2"
       ],
       "confidence": "high"
     }
