@@ -47,15 +47,7 @@ export default function SiteFooter() {
         </div>
         <div className="mt-8 border-t border-border/40 pt-6 text-center text-sm text-muted-foreground">
           <p className="flex items-center justify-center gap-1">
-            © 2026. Built with <Heart className="h-4 w-4 text-industrial-accent" fill="currentColor" /> using{' '}
-            <a
-              href="https://caffeine.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium hover:text-foreground transition-colors"
-            >
-              caffeine.ai
-            </a>
+            © 2026. Built with <Heart className="h-4 w-4 text-industrial-accent" fill="currentColor" /> by Linex Automation
           </p>
         </div>
       </div>

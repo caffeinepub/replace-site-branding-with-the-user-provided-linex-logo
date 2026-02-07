@@ -7,6 +7,7 @@ import { services } from '@/content/services';
 import { useSeo } from '@/hooks/useSeo';
 import RevealOnScroll from '@/components/motion/RevealOnScroll';
 import HeroCarousel from '@/components/home/HeroCarousel';
+import BrandsBanner from '@/components/home/BrandsBanner';
 
 export default function HomePage() {
   useSeo({
@@ -109,7 +110,7 @@ export default function HomePage() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {services.map((service, index) => (
-              <RevealOnScroll key={service.id} delay={index * 0.1}>
+              <RevealOnScroll key={service.id} delay={index * 0.1} className="h-full">
                 <ServiceCard service={service} />
               </RevealOnScroll>
             ))}
@@ -125,25 +126,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="border-t border-border/40 bg-muted/30 py-16 md:py-20">
-        <div className="container">
-          <RevealOnScroll>
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-                Ready to Transform Your Operations?
-              </h2>
-              <p className="mb-8 text-lg text-muted-foreground">
-                Contact us today to discuss your automation needs and discover how our solutions
-                can drive efficiency and innovation in your facility.
-              </p>
-              <Button asChild size="lg">
-                <Link to="/contact">Contact Us</Link>
-              </Button>
-            </div>
-          </RevealOnScroll>
-        </div>
-      </section>
+      {/* Brands Banner */}
+      <BrandsBanner />
     </div>
   );
 }

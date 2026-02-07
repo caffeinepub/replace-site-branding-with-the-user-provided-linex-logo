@@ -1,133 +1,39 @@
 {
   "kind": "build_request",
-  "title": "Convert app to frontend-only static site for Netlify (remove IC backend & Internet Identity)",
+  "title": "Replace the two Brands Banner logo images with provided URLs",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-50",
-      "text": "Convert the project into a frontend-only, fully static React/Vite site suitable for Netlify deployment by removing the Internet Computer backend canister code and IC-specific build/deploy configuration from the repo.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-1",
-          "msg-7",
-          "msg-8"
-        ],
-        "quotes": [
-          "ok make my project to frontend only so i can deploy it to netlify",
-          "yes remove all backend",
-          "make my code static and netlify freindly"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The `backend/` canister code is removed from the build/deploy flow (no backend canister is required to run or deploy the site).",
-        "IC/dfx-specific deployment configuration is removed or clearly separated so a Netlify deploy can run without installing/using dfx.",
-        "A clean Netlify build completes successfully using only the frontend build output (no backend artifacts required)."
-      ]
-    },
-    {
-      "id": "REQ-51",
-      "text": "Remove Internet Identity and backend actor usage from the runtime by switching the app entrypoint to a new static-only bootstrap file without editing any frontend immutable paths (do not edit `frontend/src/main.tsx` or the immutable II/actor hooks files).",
+      "id": "REQ-1",
+      "text": "Update the two logo <img> elements in the HomePage section 3 \"Brands We Deal In\" banner (rendered by frontend/src/components/home/BrandsBanner.tsx) so that:\n- Element 1 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[1]/img[1]) uses src=\"https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg\"\n- Element 2 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[2]/img[1]) uses src=\"https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png\"\nApply changes only to these two selected logo elements.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1",
-          "msg-3",
-          "msg-7"
+          "msg-1"
         ],
         "quotes": [
-          "ok make my project to frontend only so i can deploy it to netlify",
-          "yes and dont disturb my front end",
-          "yes remove all backend"
+          "replace the logo photos with the images link https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg and https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png",
+          "element 1 : https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg",
+          "element 2 : https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png"
         ]
       },
       "acceptanceCriteria": [
-        "`frontend/index.html` boots the app from a new static-only entry file (e.g., a new `frontend/src/main.static.tsx`), so `frontend/src/main.tsx` remains untouched.",
-        "The running site no longer requires Internet Identity to initialize (no II login flow is needed and no II-related runtime initialization blocks rendering).",
-        "No calls to create/use an IC backend actor are required for any user-visible page to load and function as before (visually unchanged)."
-      ]
-    },
-    {
-      "id": "REQ-52",
-      "text": "Update the Contact form so it does not attempt any backend/canister submission and remains visually unchanged; it must behave as a static frontend-only form (e.g., local-only submission handling with an on-screen success/failure message) while keeping all user-facing text in English.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1",
-          "msg-7"
-        ],
-        "quotes": [
-          "Should I remove the contact form’s backend submission logic and turn it into a static/non-functional form, or hide/remove the form entirely?",
-          "yes remove all backend"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Submitting the contact form performs no backend/actor/canister request and does not require Internet Identity.",
-        "The Contact page renders the same form UI (fields and layout remain), and submission gives a clear in-app confirmation message in English.",
-        "The app builds and runs on Netlify with the Contact page usable without any backend."
-      ]
-    },
-    {
-      "id": "REQ-53",
-      "text": "Make the deployment Netlify-friendly for an SPA: add Netlify configuration and redirects so all routes (Home/About/Solutions/Contact and any deep links) load correctly on refresh and direct navigation.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1",
-          "msg-8"
-        ],
-        "quotes": [
-          "ok make my project to frontend only so i can deploy it to netlify",
-          "make my code static and netlify freindly"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A Netlify deploy configuration exists (e.g., `netlify.toml`) with the correct build command and publish directory for the Vite build output.",
-        "An SPA redirect rule exists (e.g., `frontend/public/_redirects` with `/* /index.html 200`) so deep links work on Netlify.",
-        "Refreshing any app route on Netlify returns the app (not a 404)."
-      ]
-    },
-    {
-      "id": "REQ-54",
-      "text": "Keep the visible frontend UI/appearance unchanged while performing the frontend-only conversion (no intentional layout, styling, copy, or content changes except where necessary to remove backend-only functionality).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-3"
-        ],
-        "quotes": [
-          "yes and dont disturb my front end"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Header, footer, Home, About, Solutions, and Contact pages render with the same layout and styling as before the conversion.",
-        "Any user-facing text introduced or modified during the conversion remains in English.",
-        "No new authentication UI or backend-related UI is added."
+        "The first brand logo image in the banner loads from https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg.",
+        "The second brand logo image in the banner loads from https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png.",
+        "No other images/logos on the page are changed.",
+        "The banner layout and existing styling (size, object-contain, grayscale hover effect) remain intact."
       ]
     }
   ],
   "constraints": [
-    "Do not edit frontend immutable paths: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, and any files under `frontend/src/components/ui`.",
-    "Keep all user-facing text in English.",
-    "Backend must not be required for the deployed site to run (frontend-only runtime)."
+    "Do not modify any files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT."
   ],
   "nonGoals": [
-    "Adding new product features unrelated to the frontend-only conversion (e.g., new pages, new service content, new UI redesign).",
-    "Implementing third-party authentication (only removal/avoidance of Internet Identity is in scope).",
-    "Adding external databases or server-side APIs."
+    "Do not add new brand logos or change the number/order of logos beyond updating the two specified images.",
+    "Do not implement backend changes (no Motoko updates required)."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

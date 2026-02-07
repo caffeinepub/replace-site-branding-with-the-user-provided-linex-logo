@@ -4,9 +4,10 @@ import { useReducedMotion } from '@/hooks/useReducedMotion';
 interface RevealOnScrollProps {
   children: ReactNode;
   delay?: number;
+  className?: string;
 }
 
-export default function RevealOnScroll({ children, delay = 0 }: RevealOnScrollProps) {
+export default function RevealOnScroll({ children, delay = 0, className = '' }: RevealOnScrollProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -47,7 +48,7 @@ export default function RevealOnScroll({ children, delay = 0 }: RevealOnScrollPr
           : isVisible
           ? 'translate-y-0 opacity-100'
           : 'translate-y-8 opacity-0'
-      }`}
+      } ${className}`}
     >
       {children}
     </div>

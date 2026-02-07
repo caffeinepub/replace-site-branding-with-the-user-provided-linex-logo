@@ -2,12 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-convert-the-project-into-a-frontend-only-fully-static-react-vite-site-suitable-for-netlify-deployment-by-removing-the-internet-computer-backend-canister-code-and-ic-specific-build-deploy-configuration-from-the-repo",
-      "featureTitle": "Convert the project into a frontend-only, fully static React/Vite site suitable for Netlify deployment by removing the Internet Computer backend canister code and IC-specific build/deploy configuration from the repo.",
+      "featureId": "feature-update-the-two-logo-img-elements-in-the-homepage-section-3-brands-we-deal-in-banner-rendered-by-frontend-src-components-home-brandsbanner-tsx-so-that-element-1-html-1-body-1-div-1-div-1-main-1-div-1-section-3-div-1-div-1-div-1-img-1-uses-src-https-upload-wikimedia-org-wikipedia-commons-3-3c-siemens-ag-logo-svg-element-2-html-1-body-1-div-1-div-1-main-1-div-1-section-3-div-1-div-1-div-2-img-1-uses-src-https-www-ruralelec-org-wp-content-uploads-2016-04-schneider-electric-logo-jpg-png-apply-changes-only-to-these-two-selected-logo-elements",
+      "featureTitle": "Update the two logo <img> elements in the HomePage section 3 \"Brands We Deal In\" banner (rendered by frontend/src/components/home/BrandsBanner.tsx) so that:\n- Element 1 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[1]/img[1]) uses src=\"https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg\"\n- Element 2 (/html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/section[3]/div[1]/div[1]/div[2]/img[1]) uses src=\"https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png\"\nApply changes only to these two selected logo elements.",
       "files": [
-        "frontend/index.html",
-        "frontend/src/components/contact/ContactForm.tsx",
-        "frontend/src/main.static.tsx"
+        "frontend/src/components/home/BrandsBanner.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -18,85 +16,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-50"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-remove-internet-identity-and-backend-actor-usage-from-the-runtime-by-switching-the-app-entrypoint-to-a-new-static-only-bootstrap-file-without-editing-any-frontend-immutable-paths-do-not-edit-frontend-src-main-tsx-or-the-immutable-ii-actor-hooks-files",
-      "featureTitle": "Remove Internet Identity and backend actor usage from the runtime by switching the app entrypoint to a new static-only bootstrap file without editing any frontend immutable paths (do not edit `frontend/src/main.tsx` or the immutable II/actor hooks files).",
-      "files": [
-        "frontend/index.html",
-        "frontend/src/main.static.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-51"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-contact-form-so-it-does-not-attempt-any-backend-canister-submission-and-remains-visually-unchanged-it-must-behave-as-a-static-frontend-only-form-e-g-local-only-submission-handling-with-an-on-screen-success-failure-message-while-keeping-all-user-facing-text-in-english",
-      "featureTitle": "Update the Contact form so it does not attempt any backend/canister submission and remains visually unchanged; it must behave as a static frontend-only form (e.g., local-only submission handling with an on-screen success/failure message) while keeping all user-facing text in English.",
-      "files": [
-        "frontend/src/components/contact/ContactForm.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-52"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-make-the-deployment-netlify-friendly-for-an-spa-add-netlify-configuration-and-redirects-so-all-routes-home-about-solutions-contact-and-any-deep-links-load-correctly-on-refresh-and-direct-navigation",
-      "featureTitle": "Make the deployment Netlify-friendly for an SPA: add Netlify configuration and redirects so all routes (Home/About/Solutions/Contact and any deep links) load correctly on refresh and direct navigation.",
-      "files": [
-        "frontend/public/_redirects"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-53"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-keep-the-visible-frontend-ui-appearance-unchanged-while-performing-the-frontend-only-conversion-no-intentional-layout-styling-copy-or-content-changes-except-where-necessary-to-remove-backend-only-functionality",
-      "featureTitle": "Keep the visible frontend UI/appearance unchanged while performing the frontend-only conversion (no intentional layout, styling, copy, or content changes except where necessary to remove backend-only functionality).",
-      "files": [
-        "frontend/src/components/contact/ContactForm.tsx",
-        "frontend/src/main.static.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-54"
+        "REQ-1"
       ],
       "confidence": "high"
     }

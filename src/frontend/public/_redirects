@@ -1,1 +1,6 @@
+# Serve static IC domain verification files directly
+/.well-known/*  200
+/ic-assets.json  200
+
+# SPA fallback for all other routes
 /*    /index.html   200

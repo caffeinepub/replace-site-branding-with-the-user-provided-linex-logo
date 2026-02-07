@@ -1,13 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Convert the project into a frontend-only, fully static React/Vite SPA that can be deployed on Netlify without any Internet Computer (dfx/canister) backend or Internet Identity runtime dependency, while keeping the visible UI unchanged.
+**Goal:** Replace the two logo images shown in the HomePage “Brands We Deal In” (section 3) banner with the provided external image URLs.
 
 **Planned changes:**
-- Remove/decouple IC backend canister code and IC/dfx-specific build/deploy configuration so builds run without dfx and no backend is required.
-- Switch `frontend/index.html` to boot the app via a new static-only entry file (e.g., `frontend/src/main.static.tsx`) so existing immutable frontend files (including `frontend/src/main.tsx` and II/actor hooks) remain untouched.
-- Update the Contact form to avoid any backend/canister/actor submission and instead handle submission locally with an in-app success/failure message (English), keeping the same form UI.
-- Add Netlify SPA deployment configuration (e.g., `netlify.toml`) and an SPA redirect rule (e.g., `frontend/public/_redirects`) so deep links and refreshes work across all routes.
-- Ensure the visible frontend layout/styling/content remains the same, with no new auth/backend UI.
+- Update the first logo `<img>` in `frontend/src/components/home/BrandsBanner.tsx` to use `src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg"`.
+- Update the second logo `<img>` in `frontend/src/components/home/BrandsBanner.tsx` to use `src="https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png"`.
+- Keep the banner’s existing layout and styling (including sizing, object-contain, and grayscale hover effect) unchanged and do not modify any other images/logos.
 
-**User-visible outcome:** The site looks the same and all routes work on Netlify (including refresh/deep links), the app loads without Internet Identity, and the Contact form submits locally with an on-screen confirmation message without any backend.
+**User-visible outcome:** The “Brands We Deal In” banner displays the Siemens logo in the first slot and the Schneider Electric logo in the second slot, loaded from the specified URLs, with all other page visuals unchanged.

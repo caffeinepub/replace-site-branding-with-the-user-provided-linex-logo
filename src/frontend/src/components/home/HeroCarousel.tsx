@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
-// Reordered slides with last slide updated to EPLAN electrical drawings image
+// Carousel slides using available static assets
 const carouselSlides = [
   {
     src: '/assets/image-2.png',
@@ -26,10 +26,6 @@ const carouselSlides = [
   {
     src: '/assets/image-3.png',
     alt: 'Industrial equipment',
-  },
-  {
-    src: '/assets/generated/hero-slide-eplan.dim_1600x700.png',
-    alt: 'EPLAN electrical drawings software',
   },
 ];
 

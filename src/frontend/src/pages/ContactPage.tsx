@@ -62,14 +62,22 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-industrial-accent/10">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-industrial-accent/10">
                       <MapPin className="h-5 w-5 text-industrial-accent" />
                     </div>
-                    <div>
-                      <h3 className="mb-1 font-semibold">Location</h3>
-                      <p className="text-muted-foreground">
-                        Serving industrial facilities nationwide
-                      </p>
+                    <div className="flex-1">
+                      <h3 className="mb-2 font-semibold">Location</h3>
+                      <iframe
+                        src="https://www.google.com/maps?q=Rudrapur,+Uttarakhand&output=embed"
+                        width="100%"
+                        height="250"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        className="rounded-lg border border-border/40"
+                        title="Rudrapur, Uttarakhand Location"
+                      />
                     </div>
                   </div>
                 </div>

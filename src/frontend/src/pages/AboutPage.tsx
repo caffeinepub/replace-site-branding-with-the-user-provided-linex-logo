@@ -25,8 +25,11 @@ export default function AboutPage() {
         <div className="container">
           <RevealOnScroll>
             <div className="mx-auto max-w-3xl text-center">
-              <h1 className="mb-6 text-4xl font-bold uppercase tracking-tight sm:text-5xl">
-                About LINEX AUTOMATION
+              <h1 className="mb-6 flex flex-col items-center gap-2 text-4xl font-bold uppercase tracking-tight sm:text-5xl">
+                <span>About Us</span>
+                <span className="text-3xl text-industrial-accent sm:text-4xl">
+                  LINEX AUTOMATION
+                </span>
               </h1>
               <p className="text-lg text-muted-foreground md:text-xl">
                 Your trusted partner in industrial automation, delivering cutting-edge solutions
