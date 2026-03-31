@@ -1,13 +1,20 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
-import { services } from '@/content/services';
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { services } from "@/content/services";
+import { useCreateInquiry } from "@/hooks/useCreateInquiry";
+import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 interface ContactFormData {
   name: string;
@@ -18,28 +25,31 @@ interface ContactFormData {
 }
 
 export default function ContactForm() {
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<ContactFormData>();
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    setValue,
+    watch,
+  } = useForm<ContactFormData>();
+  const createInquiry = useCreateInquiry();
 
-  const inquiryTopic = watch('inquiryTopic');
+  const inquiryTopic = watch("inquiryTopic");
 
   const onSubmit = async (data: ContactFormData) => {
-    setSubmitStatus('idle');
-    setIsSubmitting(true);
-    
-    // Simulate form submission delay for better UX
-    await new Promise(resolve => setTimeout(resolve, 800));
-    
+    setSubmitStatus("idle");
+
     try {
-      // Static frontend - log form data to console for demonstration
-      console.log('Contact form submission:', data);
-      setSubmitStatus('success');
+      await createInquiry.mutateAsync(data);
+      setSubmitStatus("success");
       reset();
     } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+      console.error("Error submitting inquiry:", error);
+      setSubmitStatus("error");
     }
   };
 
@@ -51,9 +61,9 @@ export default function ContactForm() {
         </Label>
         <Input
           id="name"
-          {...register('name', { required: 'Name is required' })}
+          {...register("name", { required: "Name is required" })}
           placeholder="Your full name"
-          className={errors.name ? 'border-destructive' : ''}
+          className={errors.name ? "border-destructive" : ""}
         />
         {errors.name && (
           <p className="text-sm text-destructive">{errors.name.message}</p>
@@ -64,7 +74,7 @@ export default function ContactForm() {
         <Label htmlFor="company">Company</Label>
         <Input
           id="company"
-          {...register('company')}
+          {...register("company")}
           placeholder="Your company name (optional)"
         />
       </div>
@@ -75,18 +85,20 @@ export default function ContactForm() {
         </Label>
         <Input
           id="emailOrPhone"
-          {...register('emailOrPhone', {
-            required: 'Email or phone is required',
+          {...register("emailOrPhone", {
+            required: "Email or phone is required",
             pattern: {
               value: /^[\w\-.+]+@[\w\-.]+\.[a-zA-Z]{2,}$|^\+?[\d\s\-()]+$/,
-              message: 'Please enter a valid email or phone number',
+              message: "Please enter a valid email or phone number",
             },
           })}
           placeholder="Your Email address or Mobile number"
-          className={errors.emailOrPhone ? 'border-destructive' : ''}
+          className={errors.emailOrPhone ? "border-destructive" : ""}
         />
         {errors.emailOrPhone && (
-          <p className="text-sm text-destructive">{errors.emailOrPhone.message}</p>
+          <p className="text-sm text-destructive">
+            {errors.emailOrPhone.message}
+          </p>
         )}
       </div>
 
@@ -96,11 +108,11 @@ export default function ContactForm() {
         </Label>
         <Select
           value={inquiryTopic}
-          onValueChange={(value) => setValue('inquiryTopic', value)}
+          onValueChange={(value) => setValue("inquiryTopic", value)}
         >
           <SelectTrigger
             id="inquiryTopic"
-            className={errors.inquiryTopic ? 'border-destructive' : ''}
+            className={errors.inquiryTopic ? "border-destructive" : ""}
           >
             <SelectValue placeholder="Select a topic" />
           </SelectTrigger>
@@ -115,10 +127,14 @@ export default function ContactForm() {
         </Select>
         <input
           type="hidden"
-          {...register('inquiryTopic', { required: 'Please select an inquiry topic' })}
+          {...register("inquiryTopic", {
+            required: "Please select an inquiry topic",
+          })}
         />
         {errors.inquiryTopic && (
-          <p className="text-sm text-destructive">{errors.inquiryTopic.message}</p>
+          <p className="text-sm text-destructive">
+            {errors.inquiryTopic.message}
+          </p>
         )}
       </div>
 
@@ -128,26 +144,27 @@ export default function ContactForm() {
         </Label>
         <Textarea
           id="message"
-          {...register('message', { required: 'Message is required' })}
+          {...register("message", { required: "Message is required" })}
           placeholder="Tell us about your automation needs..."
           rows={5}
-          className={errors.message ? 'border-destructive' : ''}
+          className={errors.message ? "border-destructive" : ""}
         />
         {errors.message && (
           <p className="text-sm text-destructive">{errors.message.message}</p>
         )}
       </div>
 
-      {submitStatus === 'success' && (
+      {submitStatus === "success" && (
         <Alert className="border-industrial-accent/50 bg-industrial-accent/10">
           <CheckCircle2 className="h-4 w-4 text-industrial-accent" />
           <AlertDescription className="text-foreground">
-            Thank you for your inquiry! We'll get back to you shortly.
+            Your inquiry has been submitted successfully. We'll get back to you
+            shortly.
           </AlertDescription>
         </Alert>
       )}
 
-      {submitStatus === 'error' && (
+      {submitStatus === "error" && (
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>
@@ -159,15 +176,15 @@ export default function ContactForm() {
       <Button
         type="submit"
         className="w-full"
-        disabled={isSubmitting}
+        disabled={createInquiry.isPending}
       >
-        {isSubmitting ? (
+        {createInquiry.isPending ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             Sending...
           </>
         ) : (
-          'Send Inquiry'
+          "Send Inquiry"
         )}
       </Button>
     </form>

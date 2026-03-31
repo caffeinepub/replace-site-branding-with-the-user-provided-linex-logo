@@ -1,25 +1,26 @@
-import { useEffect, useState } from 'react';
-import { Link } from '@tanstack/react-router';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import ServiceCard from '@/components/services/ServiceCard';
-import { services } from '@/content/services';
-import { useSeo } from '@/hooks/useSeo';
-import RevealOnScroll from '@/components/motion/RevealOnScroll';
-import HeroCarousel from '@/components/home/HeroCarousel';
-import OurExpertiesBanner from '@/components/home/OurExpertiesBanner';
-import BrandsBanner from '@/components/home/BrandsBanner';
+import BrandsBanner from "@/components/home/BrandsBanner";
+import HeroCarousel from "@/components/home/HeroCarousel";
+import OurExpertiesBanner from "@/components/home/OurExpertiesBanner";
+import RevealOnScroll from "@/components/motion/RevealOnScroll";
+import ServiceCard from "@/components/services/ServiceCard";
+import { Button } from "@/components/ui/button";
+import { services } from "@/content/services";
+import { useSeo } from "@/hooks/useSeo";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+
+const words = ["Planning", "Precision", "Performance"];
 
 export default function HomePage() {
   useSeo({
-    title: 'Linex Automations - Industrial Automation Solutions',
+    title: "Linex Automations - Industrial Automation Solutions",
     description:
-      'Leading provider of PLC, HMI, SCADA, Servos, VFD, Control Panels, and Energy Management Systems for industrial automation.',
+      "Leading provider of PLC, HMI, SCADA, Servos, VFD, Control Panels, and Energy Management Systems for industrial automation.",
   });
 
-  const words = ['Planning', 'Precision', 'Performance'];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentText, setCurrentText] = useState('');
+  const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function HomePage() {
     }, typingSpeed);
 
     return () => clearTimeout(timer);
-  }, [currentText, isDeleting, currentWordIndex, words]);
+  }, [currentText, isDeleting, currentWordIndex]);
 
   return (
     <div className="flex flex-col">
@@ -103,15 +104,19 @@ export default function HomePage() {
                 Our Solutions
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-                Comprehensive automation technologies designed to optimize your industrial
-                processes and enhance operational efficiency.
+                Comprehensive automation technologies designed to optimize your
+                industrial processes and enhance operational efficiency.
               </p>
             </div>
           </RevealOnScroll>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {services.map((service, index) => (
-              <RevealOnScroll key={service.id} delay={index * 0.1} className="h-full">
+              <RevealOnScroll
+                key={service.id}
+                delay={index * 0.1}
+                className="h-full"
+              >
                 <ServiceCard service={service} />
               </RevealOnScroll>
             ))}

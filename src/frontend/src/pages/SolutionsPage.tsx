@@ -1,31 +1,31 @@
-import { useState } from 'react';
-import { useSeo } from '@/hooks/useSeo';
-import { services } from '@/content/services';
-import ServiceCard from '@/components/services/ServiceCard';
-import ServiceDetailPanel from '@/components/services/ServiceDetailPanel';
-import ServicesFilterBar from '@/components/services/ServicesFilterBar';
-import RevealOnScroll from '@/components/motion/RevealOnScroll';
-import type { Service } from '@/content/services';
+import RevealOnScroll from "@/components/motion/RevealOnScroll";
+import ServiceCard from "@/components/services/ServiceCard";
+import ServiceDetailPanel from "@/components/services/ServiceDetailPanel";
+import ServicesFilterBar from "@/components/services/ServicesFilterBar";
+import { services } from "@/content/services";
+import type { Service } from "@/content/services";
+import { useSeo } from "@/hooks/useSeo";
+import { useState } from "react";
 
 export default function SolutionsPage() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   useSeo({
-    title: 'Solutions - Linex Automations',
+    title: "Solutions - Linex Automations",
     description:
-      'Explore our comprehensive range of industrial automation solutions including PLC, HMI, SCADA, Servos, VFD, Control Panels, and Energy Management Systems.',
+      "Explore our comprehensive range of industrial automation solutions including PLC, HMI, SCADA, Servos, VFD, Control Panels, and Energy Management Systems.",
   });
 
   const filteredServices = services.filter((service) => {
     const matchesSearch =
-      searchQuery === '' ||
+      searchQuery === "" ||
       service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       service.description.toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesCategory =
-      selectedCategory === 'all' || service.category === selectedCategory;
+      selectedCategory === "all" || service.category === selectedCategory;
 
     return matchesSearch && matchesCategory;
   });
@@ -40,8 +40,8 @@ export default function SolutionsPage() {
                 Our Solutions
               </h1>
               <p className="text-lg text-muted-foreground md:text-xl">
-                Comprehensive industrial automation technologies designed to optimize your
-                operations and drive efficiency.
+                Comprehensive industrial automation technologies designed to
+                optimize your operations and drive efficiency.
               </p>
             </div>
           </RevealOnScroll>

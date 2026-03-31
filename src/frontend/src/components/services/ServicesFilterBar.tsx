@@ -1,6 +1,12 @@
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search } from 'lucide-react';
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Search } from "lucide-react";
 
 interface ServicesFilterBarProps {
   searchQuery: string;
@@ -10,11 +16,11 @@ interface ServicesFilterBarProps {
 }
 
 const categories = [
-  { value: 'all', label: 'All Solutions' },
-  { value: 'control', label: 'Control Systems' },
-  { value: 'drives', label: 'Drives & Motion' },
-  { value: 'monitoring', label: 'Monitoring & SCADA' },
-  { value: 'energy', label: 'Energy Management' },
+  { value: "all", label: "All Solutions" },
+  { value: "control", label: "Control Systems" },
+  { value: "drives", label: "Drives & Motion" },
+  { value: "monitoring", label: "Monitoring & SCADA" },
+  { value: "energy", label: "Energy Management" },
 ];
 
 export default function ServicesFilterBar({

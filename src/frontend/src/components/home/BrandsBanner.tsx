@@ -1,7 +1,13 @@
 export default function BrandsBanner() {
   const brands = [
-    { name: 'Siemens logo', src: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg' },
-    { name: 'Schneider Electric logo', src: 'https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png' },
+    {
+      name: "Siemens logo",
+      src: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg",
+    },
+    {
+      name: "Schneider Electric logo",
+      src: "https://www.ruralelec.org/wp-content/uploads/2016/04/Schneider-Electric-logo-jpg-.png",
+    },
   ];
 
   return (
@@ -11,9 +17,9 @@ export default function BrandsBanner() {
           Brands We Deal In
         </h2>
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-          {brands.map((brand, index) => (
+          {brands.map((brand) => (
             <div
-              key={index}
+              key={brand.name}
               className="flex h-20 w-40 items-center justify-center grayscale transition-all hover:grayscale-0"
             >
               <img

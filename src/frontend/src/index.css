@@ -3,208 +3,216 @@
 @tailwind utilities;
 
 @layer base {
-    :root {
-        --radius: 0.5rem;
-        
-        /* Industrial color palette - Light mode */
-        --background: 0.98 0 0;
-        --foreground: 0.15 0 0;
-        
-        --card: 1 0 0;
-        --card-foreground: 0.15 0 0;
-        
-        --popover: 1 0 0;
-        --popover-foreground: 0.15 0 0;
-        
-        --primary: 0.20 0 0;
-        --primary-foreground: 0.98 0 0;
-        
-        --secondary: 0.94 0 0;
-        --secondary-foreground: 0.20 0 0;
-        
-        --muted: 0.95 0 0;
-        --muted-foreground: 0.50 0 0;
-        
-        --accent: 0.94 0 0;
-        --accent-foreground: 0.20 0 0;
-        
-        --destructive: 0.55 0.22 25;
-        --destructive-foreground: 0.98 0 0;
-        
-        --border: 0.90 0 0;
-        --input: 0.90 0 0;
-        --ring: 0.50 0 0;
-        
-        /* Industrial accent - Amber/Orange */
-        --industrial-accent: 0.65 0.18 45;
-        
-        --chart-1: 0.65 0.18 45;
-        --chart-2: 0.55 0.15 220;
-        --chart-3: 0.45 0.12 180;
-        --chart-4: 0.70 0.16 90;
-        --chart-5: 0.60 0.14 30;
-    }
+  :root {
+    --radius: 0.5rem;
 
-    .dark {
-        --background: 0.12 0 0;
-        --foreground: 0.95 0 0;
-        
-        --card: 0.16 0 0;
-        --card-foreground: 0.95 0 0;
-        
-        --popover: 0.14 0 0;
-        --popover-foreground: 0.95 0 0;
-        
-        --primary: 0.90 0 0;
-        --primary-foreground: 0.15 0 0;
-        
-        --secondary: 0.22 0 0;
-        --secondary-foreground: 0.95 0 0;
-        
-        --muted: 0.20 0 0;
-        --muted-foreground: 0.60 0 0;
-        
-        --accent: 0.25 0 0;
-        --accent-foreground: 0.95 0 0;
-        
-        --destructive: 0.60 0.20 25;
-        --destructive-foreground: 0.95 0 0;
-        
-        --border: 0.25 0 0;
-        --input: 0.25 0 0;
-        --ring: 0.50 0 0;
-        
-        /* Industrial accent - Brighter in dark mode */
-        --industrial-accent: 0.70 0.20 45;
-        
-        --chart-1: 0.70 0.20 45;
-        --chart-2: 0.60 0.18 220;
-        --chart-3: 0.50 0.15 180;
-        --chart-4: 0.75 0.18 90;
-        --chart-5: 0.65 0.16 30;
-    }
+    /* Industrial color palette - Light mode */
+    --background: 0.98 0 0;
+    --foreground: 0.15 0 0;
 
-    * {
-        @apply border-border;
-    }
-    
-    body {
-        @apply bg-background text-foreground;
-        font-feature-settings: "rlig" 1, "calt" 1;
-    }
-    
-    /* Focus visible styles for accessibility */
-    *:focus-visible {
-        @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
-    }
-    
-    /* Grid pattern for hero background */
-    .bg-grid-pattern {
-        background-image: linear-gradient(to right, oklch(var(--foreground) / 0.1) 1px, transparent 1px),
-                          linear-gradient(to bottom, oklch(var(--foreground) / 0.1) 1px, transparent 1px);
-        background-size: 40px 40px;
-    }
+    --card: 1 0 0;
+    --card-foreground: 0.15 0 0;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.15 0 0;
+
+    --primary: 0.2 0 0;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.94 0 0;
+    --secondary-foreground: 0.2 0 0;
+
+    --muted: 0.95 0 0;
+    --muted-foreground: 0.5 0 0;
+
+    --accent: 0.94 0 0;
+    --accent-foreground: 0.2 0 0;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.9 0 0;
+    --input: 0.9 0 0;
+    --ring: 0.5 0 0;
+
+    /* Industrial accent - Amber/Orange */
+    --industrial-accent: 0.65 0.18 45;
+
+    --chart-1: 0.65 0.18 45;
+    --chart-2: 0.55 0.15 220;
+    --chart-3: 0.45 0.12 180;
+    --chart-4: 0.7 0.16 90;
+    --chart-5: 0.6 0.14 30;
+  }
+
+  .dark {
+    --background: 0.12 0 0;
+    --foreground: 0.95 0 0;
+
+    --card: 0.16 0 0;
+    --card-foreground: 0.95 0 0;
+
+    --popover: 0.14 0 0;
+    --popover-foreground: 0.95 0 0;
+
+    --primary: 0.9 0 0;
+    --primary-foreground: 0.15 0 0;
+
+    --secondary: 0.22 0 0;
+    --secondary-foreground: 0.95 0 0;
+
+    --muted: 0.2 0 0;
+    --muted-foreground: 0.6 0 0;
+
+    --accent: 0.25 0 0;
+    --accent-foreground: 0.95 0 0;
+
+    --destructive: 0.6 0.2 25;
+    --destructive-foreground: 0.95 0 0;
+
+    --border: 0.25 0 0;
+    --input: 0.25 0 0;
+    --ring: 0.5 0 0;
+
+    /* Industrial accent - Brighter in dark mode */
+    --industrial-accent: 0.7 0.2 45;
+
+    --chart-1: 0.7 0.2 45;
+    --chart-2: 0.6 0.18 220;
+    --chart-3: 0.5 0.15 180;
+    --chart-4: 0.75 0.18 90;
+    --chart-5: 0.65 0.16 30;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Focus visible styles for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Grid pattern for hero background */
+  .bg-grid-pattern {
+    background-image: linear-gradient(
+        to right,
+        oklch(var(--foreground) / 0.1) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        oklch(var(--foreground) / 0.1) 1px,
+        transparent 1px
+      );
+    background-size: 40px 40px;
+  }
 }
 
 @layer utilities {
-    .text-industrial-accent {
-        color: oklch(var(--industrial-accent));
-    }
-    
-    .bg-industrial-accent {
-        background-color: oklch(var(--industrial-accent));
-    }
-    
-    .border-industrial-accent {
-        border-color: oklch(var(--industrial-accent));
-    }
+  .text-industrial-accent {
+    color: oklch(var(--industrial-accent));
+  }
+
+  .bg-industrial-accent {
+    background-color: oklch(var(--industrial-accent));
+  }
+
+  .border-industrial-accent {
+    border-color: oklch(var(--industrial-accent));
+  }
 }
 
 /* Hero Slideshow Styles */
 @layer components {
-    .hero-slideshow-container {
-        @apply relative h-full w-full flex flex-col;
-    }
+  .hero-slideshow-container {
+    @apply relative h-full w-full flex flex-col;
+  }
 
-    .hero-slideshow-viewport {
-        @apply relative flex-1 w-full overflow-hidden cursor-grab active:cursor-grabbing;
-    }
+  .hero-slideshow-viewport {
+    @apply relative flex-1 w-full overflow-hidden cursor-grab active:cursor-grabbing;
+  }
 
-    .hero-slideshow-track {
-        @apply flex h-full;
-        will-change: transform;
-    }
+  .hero-slideshow-track {
+    @apply flex h-full;
+    will-change: transform;
+  }
 
-    .hero-slideshow-slide {
-        @apply h-full flex-shrink-0 w-full;
-    }
+  .hero-slideshow-slide {
+    @apply h-full flex-shrink-0 w-full;
+  }
 
-    /* Bottom Navigation Dots - Below slideshow, not overlaying */
+  /* Bottom Navigation Dots - Below slideshow, not overlaying */
+  .hero-slideshow-nav {
+    @apply flex items-center justify-center gap-6 py-6;
+    /* No absolute positioning - normal flow below viewport */
+  }
+
+  .hero-slideshow-dot {
+    @apply relative p-0 border-0 bg-transparent cursor-pointer;
+    @apply transition-all duration-200 ease-out;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    width: 8px;
+    height: 8px;
+    /* Larger invisible hit area for better touch/click targets */
+    padding: 8px;
+    margin: -8px;
+  }
+
+  .hero-slideshow-dot:focus-visible {
+    outline-color: oklch(0.5 0 0 / 0.5);
+  }
+
+  .hero-slideshow-dot-inner {
+    @apply block rounded-full;
+    @apply transition-all duration-200 ease-out;
+    width: 8px;
+    height: 8px;
+    /* Light gray inactive dot */
+    background-color: oklch(0.75 0 0 / 0.4);
+  }
+
+  .hero-slideshow-dot:hover .hero-slideshow-dot-inner {
+    background-color: oklch(0.6 0 0 / 0.6);
+  }
+
+  /* Active dot - darker/filled */
+  .hero-slideshow-dot.active .hero-slideshow-dot-inner {
+    background-color: oklch(0.4 0 0 / 0.85);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
     .hero-slideshow-nav {
-        @apply flex items-center justify-center gap-6 py-6;
-        /* No absolute positioning - normal flow below viewport */
+      @apply gap-5 py-5;
     }
 
     .hero-slideshow-dot {
-        @apply relative p-0 border-0 bg-transparent cursor-pointer;
-        @apply transition-all duration-200 ease-out;
-        @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
-        width: 8px;
-        height: 8px;
-        /* Larger invisible hit area for better touch/click targets */
-        padding: 8px;
-        margin: -8px;
-    }
-
-    .hero-slideshow-dot:focus-visible {
-        ring-color: oklch(0.50 0 0 / 0.5);
+      width: 7px;
+      height: 7px;
+      padding: 7px;
+      margin: -7px;
     }
 
     .hero-slideshow-dot-inner {
-        @apply block rounded-full;
-        @apply transition-all duration-200 ease-out;
-        width: 8px;
-        height: 8px;
-        /* Light gray inactive dot */
-        background-color: oklch(0.75 0 0 / 0.4);
+      width: 7px;
+      height: 7px;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slideshow-track {
+      transition: transform 0.3s ease-in-out !important;
     }
 
-    .hero-slideshow-dot:hover .hero-slideshow-dot-inner {
-        background-color: oklch(0.60 0 0 / 0.6);
+    .hero-slideshow-dot-inner {
+      transition: background-color 0.15s ease-out;
     }
-
-    /* Active dot - darker/filled */
-    .hero-slideshow-dot.active .hero-slideshow-dot-inner {
-        background-color: oklch(0.40 0 0 / 0.85);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 640px) {
-        .hero-slideshow-nav {
-            @apply gap-5 py-5;
-        }
-
-        .hero-slideshow-dot {
-            width: 7px;
-            height: 7px;
-            padding: 7px;
-            margin: -7px;
-        }
-
-        .hero-slideshow-dot-inner {
-            width: 7px;
-            height: 7px;
-        }
-    }
-
-    /* Reduced motion support */
-    @media (prefers-reduced-motion: reduce) {
-        .hero-slideshow-track {
-            transition: transform 0.3s ease-in-out !important;
-        }
-
-        .hero-slideshow-dot-inner {
-            transition: background-color 0.15s ease-out;
-        }
-    }
+  }
 }

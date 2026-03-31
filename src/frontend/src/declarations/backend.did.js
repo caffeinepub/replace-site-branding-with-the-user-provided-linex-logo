@@ -14,19 +14,45 @@ export const UserRole = IDL.Variant({
   'guest' : IDL.Null,
 });
 export const UserProfile = IDL.Record({ 'name' : IDL.Text });
+export const InquiryStatus = IDL.Variant({
+  'closed' : IDL.Null,
+  'pending' : IDL.Null,
+  'open' : IDL.Null,
+});
+export const Inquiry = IDL.Record({
+  'id' : IDL.Nat,
+  'status' : InquiryStatus,
+  'emailOrPhone' : IDL.Text,
+  'name' : IDL.Text,
+  'createdAt' : IDL.Int,
+  'seenByAdmin' : IDL.Bool,
+  'company' : IDL.Opt(IDL.Text),
+  'message' : IDL.Text,
+  'inquiryTopic' : IDL.Text,
+});
 
 export const idlService = IDL.Service({
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'createInquiry' : IDL.Func(
+      [IDL.Text, IDL.Opt(IDL.Text), IDL.Text, IDL.Text, IDL.Text],
+      [IDL.Opt(IDL.Nat)],
+      [],
+    ),
+  'deleteInquiry' : IDL.Func([IDL.Nat], [], []),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getInquiry' : IDL.Func([IDL.Nat], [IDL.Opt(Inquiry)], ['query']),
   'getUserProfile' : IDL.Func(
       [IDL.Principal],
       [IDL.Opt(UserProfile)],
       ['query'],
     ),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'listInquiries' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Vec(Inquiry)], ['query']),
+  'markInquiryAsSeen' : IDL.Func([IDL.Nat], [], []),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'updateInquiryStatus' : IDL.Func([IDL.Nat, InquiryStatus], [], []),
 });
 
 export const idlInitArgs = [];
@@ -38,19 +64,49 @@ export const idlFactory = ({ IDL }) => {
     'guest' : IDL.Null,
   });
   const UserProfile = IDL.Record({ 'name' : IDL.Text });
+  const InquiryStatus = IDL.Variant({
+    'closed' : IDL.Null,
+    'pending' : IDL.Null,
+    'open' : IDL.Null,
+  });
+  const Inquiry = IDL.Record({
+    'id' : IDL.Nat,
+    'status' : InquiryStatus,
+    'emailOrPhone' : IDL.Text,
+    'name' : IDL.Text,
+    'createdAt' : IDL.Int,
+    'seenByAdmin' : IDL.Bool,
+    'company' : IDL.Opt(IDL.Text),
+    'message' : IDL.Text,
+    'inquiryTopic' : IDL.Text,
+  });
   
   return IDL.Service({
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'createInquiry' : IDL.Func(
+        [IDL.Text, IDL.Opt(IDL.Text), IDL.Text, IDL.Text, IDL.Text],
+        [IDL.Opt(IDL.Nat)],
+        [],
+      ),
+    'deleteInquiry' : IDL.Func([IDL.Nat], [], []),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getInquiry' : IDL.Func([IDL.Nat], [IDL.Opt(Inquiry)], ['query']),
     'getUserProfile' : IDL.Func(
         [IDL.Principal],
         [IDL.Opt(UserProfile)],
         ['query'],
       ),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'listInquiries' : IDL.Func(
+        [IDL.Nat, IDL.Nat],
+        [IDL.Vec(Inquiry)],
+        ['query'],
+      ),
+    'markInquiryAsSeen' : IDL.Func([IDL.Nat], [], []),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'updateInquiryStatus' : IDL.Func([IDL.Nat, InquiryStatus], [], []),
   });
 };
 

@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Link, useRouterState } from '@tanstack/react-router';
-import { Menu } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { BRANDING } from '@/config/branding';
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { BRANDING } from "@/config/branding";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { Menu } from "lucide-react";
+import { useState } from "react";
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/solutions', label: 'Solutions' },
-  { href: '/contact', label: 'Contact' },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/solutions", label: "Solutions" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function SiteHeader() {
@@ -39,8 +39,8 @@ export default function SiteHeader() {
               to={link.href}
               className={`px-4 py-2 text-sm font-medium transition-colors hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md ${
                 currentPath === link.href
-                  ? 'bg-accent text-accent-foreground'
-                  : 'text-muted-foreground hover:bg-accent/50'
+                  ? "bg-accent text-accent-foreground"
+                  : "text-muted-foreground hover:bg-accent/50"
               }`}
             >
               {link.label}
@@ -64,8 +64,8 @@ export default function SiteHeader() {
                   onClick={() => setIsOpen(false)}
                   className={`px-4 py-3 text-base font-medium transition-colors hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md ${
                     currentPath === link.href
-                      ? 'bg-accent text-accent-foreground'
-                      : 'text-muted-foreground hover:bg-accent/50'
+                      ? "bg-accent text-accent-foreground"
+                      : "text-muted-foreground hover:bg-accent/50"
                   }`}
                 >
                   {link.label}

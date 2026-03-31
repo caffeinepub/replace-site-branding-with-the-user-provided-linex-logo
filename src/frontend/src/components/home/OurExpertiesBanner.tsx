@@ -1,25 +1,25 @@
+import RevealOnScroll from "@/components/motion/RevealOnScroll";
 import {
-  ShoppingCart,
   Car,
-  Layers,
   CircleDot,
-  Hammer,
   Droplet,
-  FlaskConical,
   FileText,
-} from 'lucide-react';
-import RevealOnScroll from '@/components/motion/RevealOnScroll';
+  FlaskConical,
+  Hammer,
+  Layers,
+  ShoppingCart,
+} from "lucide-react";
 
 export default function OurExpertiesBanner() {
   const industries = [
-    { name: 'FMCG', icon: ShoppingCart },
-    { name: 'Automobiles', icon: Car },
-    { name: 'Plywood/MDF', icon: Layers },
-    { name: 'Tyre Plant', icon: CircleDot },
-    { name: 'Steel', icon: Hammer },
-    { name: 'Sugar', icon: Droplet },
-    { name: 'Chemical', icon: FlaskConical },
-    { name: 'Paper', icon: FileText },
+    { name: "FMCG", icon: ShoppingCart },
+    { name: "Automobiles", icon: Car },
+    { name: "Plywood/MDF", icon: Layers },
+    { name: "Tyre Plant", icon: CircleDot },
+    { name: "Steel", icon: Hammer },
+    { name: "Sugar", icon: Droplet },
+    { name: "Chemical", icon: FlaskConical },
+    { name: "Paper", icon: FileText },
   ];
 
   return (

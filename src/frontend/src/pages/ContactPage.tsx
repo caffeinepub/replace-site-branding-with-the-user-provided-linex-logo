@@ -1,13 +1,13 @@
-import { useSeo } from '@/hooks/useSeo';
-import ContactForm from '@/components/contact/ContactForm';
-import RevealOnScroll from '@/components/motion/RevealOnScroll';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import ContactForm from "@/components/contact/ContactForm";
+import RevealOnScroll from "@/components/motion/RevealOnScroll";
+import { useSeo } from "@/hooks/useSeo";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function ContactPage() {
   useSeo({
-    title: 'Contact Us - Linex Automations',
+    title: "Contact Us - Linex Automations",
     description:
-      'Get in touch with Linex Automations to discuss your industrial automation needs. Our team is ready to help you optimize your operations.',
+      "Get in touch with Linex Automations to discuss your industrial automation needs. Our team is ready to help you optimize your operations.",
   });
 
   return (
@@ -20,7 +20,8 @@ export default function ContactPage() {
                 Get in Touch
               </h1>
               <p className="text-lg text-muted-foreground md:text-xl">
-                Have a question or ready to discuss your automation needs? We're here to help.
+                Have a question or ready to discuss your automation needs? We're
+                here to help.
               </p>
             </div>
           </RevealOnScroll>
@@ -33,10 +34,12 @@ export default function ContactPage() {
             <RevealOnScroll>
               <div className="space-y-8">
                 <div>
-                  <h2 className="mb-6 text-3xl font-bold tracking-tight">Contact Information</h2>
+                  <h2 className="mb-6 text-3xl font-bold tracking-tight">
+                    Contact Information
+                  </h2>
                   <p className="text-muted-foreground">
-                    Reach out to our team to learn more about our solutions and how we can help
-                    optimize your industrial operations.
+                    Reach out to our team to learn more about our solutions and
+                    how we can help optimize your industrial operations.
                   </p>
                 </div>
 
@@ -47,7 +50,9 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="mb-1 font-semibold">Email</h3>
-                      <p className="text-muted-foreground">sales@linexautomation.com</p>
+                      <p className="text-muted-foreground">
+                        sales@linexautomation.com
+                      </p>
                     </div>
                   </div>
 

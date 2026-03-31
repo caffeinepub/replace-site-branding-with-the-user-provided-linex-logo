@@ -1,31 +1,31 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
-import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 // Carousel slides using available static assets
 const carouselSlides = [
   {
-    src: '/assets/image-2.png',
-    alt: 'Automation technology',
+    src: "/assets/image-2.png",
+    alt: "Automation technology",
   },
   {
-    src: '/assets/image-6.png',
-    alt: 'Industrial solutions',
+    src: "/assets/image-6.png",
+    alt: "Industrial solutions",
   },
   {
-    src: '/assets/image-4.png',
-    alt: 'Control panel systems',
+    src: "/assets/image-4.png",
+    alt: "Control panel systems",
   },
   {
-    src: '/assets/image-5.png',
-    alt: 'Manufacturing automation',
+    src: "/assets/image-5.png",
+    alt: "Manufacturing automation",
   },
   {
-    src: '/assets/image.png',
-    alt: 'Industrial automation solutions',
+    src: "/assets/image.png",
+    alt: "Industrial automation solutions",
   },
   {
-    src: '/assets/image-3.png',
-    alt: 'Industrial equipment',
+    src: "/assets/image-3.png",
+    alt: "Industrial equipment",
   },
 ];
 
@@ -155,17 +155,19 @@ export default function HeroCarousel() {
           className="hero-slideshow-track"
           style={{
             transform: `translateX(calc(-${currentIndex * 100}% + ${translateX}px))`,
-            transition: isDragging ? 'none' : 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+            transition: isDragging
+              ? "none"
+              : "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
-          {carouselSlides.map((slide, index) => (
-            <div key={index} className="hero-slideshow-slide">
+          {carouselSlides.map((slide) => (
+            <div key={slide.src} className="hero-slideshow-slide">
               <img
                 src={slide.src}
                 alt={slide.alt}
                 className="h-full w-full object-cover select-none"
                 draggable={false}
-                loading={index === 0 ? 'eager' : 'lazy'}
+                loading={slide.src === carouselSlides[0].src ? "eager" : "lazy"}
               />
             </div>
           ))}
@@ -174,13 +176,14 @@ export default function HeroCarousel() {
 
       {/* Bottom Navigation Dots - Below slideshow */}
       <div className="hero-slideshow-nav">
-        {carouselSlides.map((_, index) => (
+        {carouselSlides.map((slide, index) => (
           <button
-            key={index}
+            key={`dot-${slide.src}`}
+            type="button"
             onClick={() => goToSlide(index)}
-            className={`hero-slideshow-dot ${index === currentIndex ? 'active' : ''}`}
+            className={`hero-slideshow-dot ${index === currentIndex ? "active" : ""}`}
             aria-label={`Go to slide ${index + 1}`}
-            aria-current={index === currentIndex ? 'true' : 'false'}
+            aria-current={index === currentIndex ? "true" : "false"}
           >
             <span className="hero-slideshow-dot-inner" />
           </button>
