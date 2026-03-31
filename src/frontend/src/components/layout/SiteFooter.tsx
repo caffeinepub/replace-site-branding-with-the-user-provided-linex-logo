@@ -1,6 +1,6 @@
 import { BRANDING } from "@/config/branding";
 import { useIsCallerAdmin } from "@/hooks/useIsCallerAdmin";
-import { Heart, Shield, ShieldCheck } from "lucide-react";
+import { Heart, Shield } from "lucide-react";
 
 export default function SiteFooter() {
   const { data: isAdmin } = useIsCallerAdmin();
@@ -8,7 +8,7 @@ export default function SiteFooter() {
   return (
     <footer className="border-t border-border/40 bg-muted/30">
       <div className="container py-8">
-        <div className="grid gap-8 md:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-3">
           <div>
             <h3 className="mb-3 text-sm font-extrabold uppercase">
               {BRANDING.company.name}
@@ -62,7 +62,7 @@ export default function SiteFooter() {
                   href="/terms"
                   className="hover:text-foreground transition-colors"
                 >
-                  Terms &amp; Conditions
+                  Terms & Conditions
                 </a>
               </li>
               {isAdmin && (
@@ -85,40 +85,23 @@ export default function SiteFooter() {
               can help optimize your operations.
             </p>
           </div>
-          <div>
-            <h3 className="mb-3 text-sm font-semibold">Certifications</h3>
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-2 rounded-lg border border-industrial-accent/30 bg-industrial-accent/5 px-3 py-2">
-                <ShieldCheck className="h-4 w-4 flex-shrink-0 text-industrial-accent" />
-                <div>
-                  <p className="text-xs font-bold text-foreground">
-                    ISO 9001:2015
-                  </p>
-                  <p className="text-xs text-muted-foreground">Certified</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 rounded-lg border border-industrial-accent/30 bg-industrial-accent/5 px-3 py-2">
-                <ShieldCheck className="h-4 w-4 flex-shrink-0 text-industrial-accent" />
-                <div>
-                  <p className="text-xs font-bold text-foreground">
-                    IEC Certified
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Import &amp; Export
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <div className="mt-8 border-t border-border/40 pt-6 text-center text-sm text-muted-foreground">
           <p className="flex items-center justify-center gap-1">
-            © {new Date().getFullYear()}. Built with{" "}
+            © 2026. Built with{" "}
             <Heart
               className="h-4 w-4 text-industrial-accent"
               fill="currentColor"
             />{" "}
-            by Linex Automation
+            using{" "}
+            <a
+              href="https://caffeine.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              caffeine.ai
+            </a>
           </p>
         </div>
       </div>

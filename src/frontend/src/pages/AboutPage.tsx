@@ -1,14 +1,6 @@
 import RevealOnScroll from "@/components/motion/RevealOnScroll";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { useSeo } from "@/hooks/useSeo";
-import { Award, CheckCircle2, ShieldCheck, X } from "lucide-react";
-import { useState } from "react";
+import { CheckCircle2 } from "lucide-react";
 
 const capabilities = [
   "Programmable Logic Controllers (PLC)",
@@ -20,41 +12,12 @@ const capabilities = [
   "Energy Management Systems",
 ];
 
-const certifications = [
-  {
-    id: 1,
-    icon: ShieldCheck,
-    title: "ISO 9001:2015",
-    subtitle: "Quality Management System",
-    description:
-      "Certified for our commitment to consistent quality management, customer satisfaction, and continual improvement across all operations.",
-    embedUrl:
-      "https://drive.google.com/file/d/1bnGuwMXFHGZvAfjkGx8IfkhPvg_dnAVB/preview",
-    ocidBtn: "certifications.view_certificate_button.1",
-  },
-  {
-    id: 2,
-    icon: Award,
-    title: "IEC Certified",
-    subtitle: "Import & Export Compliance",
-    description:
-      "Internationally recognized certification confirming our compliance with global standards for import and export of industrial automation equipment.",
-    embedUrl:
-      "https://drive.google.com/file/d/13psjHgfHf0llifzmrB2oR1dDYT5YcIHw/preview",
-    ocidBtn: "certifications.view_certificate_button.2",
-  },
-];
-
 export default function AboutPage() {
   useSeo({
     title: "About LINEX AUTOMATION - Industrial Automation Experts",
     description:
       "Learn about LINEX AUTOMATION, your trusted partner for comprehensive industrial automation solutions including PLC, HMI, SCADA, and energy management systems.",
   });
-
-  const [openCert, setOpenCert] = useState<(typeof certifications)[0] | null>(
-    null,
-  );
 
   return (
     <div className="flex flex-col">
@@ -157,105 +120,6 @@ export default function AboutPage() {
           </RevealOnScroll>
         </div>
       </section>
-
-      {/* Certifications Section */}
-      <section className="border-t border-border/40 py-16 md:py-24">
-        <div className="container">
-          <RevealOnScroll>
-            <div className="mb-12 text-center">
-              <h2 className="mb-3 text-3xl font-bold tracking-tight">
-                Our Certifications
-              </h2>
-              <p className="text-muted-foreground">
-                Recognized globally for quality, compliance, and operational
-                excellence.
-              </p>
-            </div>
-          </RevealOnScroll>
-
-          <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
-            {certifications.map((cert, i) => {
-              const Icon = cert.icon;
-              return (
-                <RevealOnScroll key={cert.id} delay={i * 0.15}>
-                  <div className="flex flex-col items-center gap-4 rounded-xl border border-border bg-card p-8 text-center shadow-sm transition-shadow hover:shadow-md">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-industrial-accent/10">
-                      <Icon className="h-8 w-8 text-industrial-accent" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold tracking-tight">
-                        {cert.title}
-                      </h3>
-                      <p className="mt-1 text-sm font-medium text-industrial-accent">
-                        {cert.subtitle}
-                      </p>
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      {cert.description}
-                    </p>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="mt-2 border-industrial-accent/40 text-industrial-accent hover:bg-industrial-accent/10"
-                      onClick={() => setOpenCert(cert)}
-                      data-ocid={cert.ocidBtn}
-                    >
-                      View Certificate
-                    </Button>
-                  </div>
-                </RevealOnScroll>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Certificate Modal */}
-      <Dialog
-        open={!!openCert}
-        onOpenChange={(open) => !open && setOpenCert(null)}
-      >
-        <DialogContent className="max-w-3xl" data-ocid="certifications.modal">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              {openCert && (
-                <>
-                  {openCert.id === 1 ? (
-                    <ShieldCheck className="h-5 w-5 text-industrial-accent" />
-                  ) : (
-                    <Award className="h-5 w-5 text-industrial-accent" />
-                  )}
-                  {openCert.title} — {openCert.subtitle}
-                </>
-              )}
-            </DialogTitle>
-          </DialogHeader>
-          <div className="mt-2 overflow-hidden rounded-lg border border-border">
-            {openCert && (
-              <iframe
-                src={openCert.embedUrl}
-                title={openCert.title}
-                width="100%"
-                height="600"
-                className="block"
-                sandbox="allow-scripts allow-same-origin"
-                allow="autoplay"
-              />
-            )}
-          </div>
-          <div className="mt-4 flex justify-end">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setOpenCert(null)}
-              data-ocid="certifications.close_button"
-            >
-              <X className="mr-1.5 h-4 w-4" />
-              Close
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

@@ -70,7 +70,7 @@ export default function HeroCarousel() {
 
     autoplayRef.current = setInterval(() => {
       nextSlide();
-    }, 4000); // Change slide every 4 seconds
+    }, 4000);
 
     return () => {
       if (autoplayRef.current) {
@@ -95,7 +95,7 @@ export default function HeroCarousel() {
     if (!isDragging) return;
     setIsDragging(false);
 
-    const threshold = 50; // Minimum drag distance to trigger slide change
+    const threshold = 50;
     if (translateX > threshold) {
       prevSlide();
     } else if (translateX < -threshold) {
@@ -178,8 +178,8 @@ export default function HeroCarousel() {
       <div className="hero-slideshow-nav">
         {carouselSlides.map((slide, index) => (
           <button
-            key={`dot-${slide.src}`}
             type="button"
+            key={slide.src}
             onClick={() => goToSlide(index)}
             className={`hero-slideshow-dot ${index === currentIndex ? "active" : ""}`}
             aria-label={`Go to slide ${index + 1}`}
