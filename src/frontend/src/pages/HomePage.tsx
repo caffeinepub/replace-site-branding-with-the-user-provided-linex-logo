@@ -1,5 +1,6 @@
 import BrandsBanner from "@/components/home/BrandsBanner";
 import HeroCarousel from "@/components/home/HeroCarousel";
+import OurCertificationsBanner from "@/components/home/OurCertificationsBanner";
 import OurCustomersBanner from "@/components/home/OurCustomersBanner";
 import OurExpertiesBanner from "@/components/home/OurExpertiesBanner";
 import RevealOnScroll from "@/components/motion/RevealOnScroll";
@@ -135,6 +136,9 @@ export default function HomePage() {
 
       {/* Our Customers Banner */}
       <OurCustomersBanner />
+
+      {/* Our Certifications Banner */}
+      <OurCertificationsBanner />
     </div>
   );
 }

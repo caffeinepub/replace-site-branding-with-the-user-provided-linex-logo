@@ -5,7 +5,7 @@ const customers = [
   },
   {
     name: "Customer 2",
-    src: "https://lh3.googleusercontent.com/d/1F8esz_FifVWZmyD7kKOjMby54haxQKWM",
+    src: "https://lh3.googleusercontent.com/d/1ptaNgD43xtoZJSdDjk7ipYegSSR5qLZa",
   },
   {
     name: "Customer 3",
@@ -13,7 +13,7 @@ const customers = [
   },
   {
     name: "Customer 4",
-    src: "https://lh3.googleusercontent.com/d/15SNprAdI6HQbSFtKQ8mqIjkXwPgTSXdA",
+    src: "https://lh3.googleusercontent.com/d/1ti6GH0YBNK8pOpTRwwoYjUinyj2GmsAx",
   },
   {
     name: "Customer 5",
@@ -33,7 +33,7 @@ const customers = [
   },
   {
     name: "Customer 9",
-    src: "https://lh3.googleusercontent.com/d/1SVXPPRE_jiTszQBuHxfmLWHi0_6qZx_F",
+    src: "https://lh3.googleusercontent.com/d/1G-dyq5BPpYJsOpvCoRvi68IfmdgSXhw1",
   },
 ];
 
@@ -46,12 +46,9 @@ export default function OurCustomersBanner() {
         </h2>
       </div>
       <div className="relative overflow-hidden">
-        {/* Fade edges */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
-
         <div className="marquee-track flex items-center gap-16">
-          {/* First set */}
           {customers.map((customer) => (
             <div
               key={`first-${customer.name}`}
@@ -60,12 +57,11 @@ export default function OurCustomersBanner() {
               <img
                 src={customer.src}
                 alt={customer.name}
-                className="h-16 w-40 object-contain opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                className="h-16 w-40 object-contain"
                 loading="lazy"
               />
             </div>
           ))}
-          {/* Duplicate set for seamless loop */}
           {customers.map((customer) => (
             <div
               key={`second-${customer.name}`}
@@ -74,7 +70,7 @@ export default function OurCustomersBanner() {
               <img
                 src={customer.src}
                 alt={customer.name}
-                className="h-16 w-40 object-contain opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                className="h-16 w-40 object-contain"
                 loading="lazy"
               />
             </div>
