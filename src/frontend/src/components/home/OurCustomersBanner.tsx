@@ -31,10 +31,7 @@ const customers = [
     name: "Customer 8",
     src: "https://lh3.googleusercontent.com/d/1afKfaqAkCFufThp2S7E_oVG3Fwmtqph3",
   },
-  {
-    name: "Customer 9",
-    src: "https://lh3.googleusercontent.com/d/1G-dyq5BPpYJsOpvCoRvi68IfmdgSXhw1",
-  },
+  // Customer 9 (Dana) hidden temporarily
 ];
 
 export default function OurCustomersBanner() {
